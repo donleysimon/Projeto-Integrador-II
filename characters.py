@@ -11,7 +11,7 @@ class Skier:
         pygame.draw.rect(screen, color.blue, corpo)
 
         #head
-        pompom = pygame.Rect(8+x, y, 2t, 2)
+        pompom = pygame.Rect(8+x, y, 2, 2)
         pygame.draw.rect(screen, color.blue, pompom)
         
         gorro = pygame.Rect(7+x, 2+y, 1, 2)
