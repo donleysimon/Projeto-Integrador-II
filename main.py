@@ -2,26 +2,16 @@ import pygame
 import color
 import characters
 import objects
-
 pygame.init()
-
 screen = pygame.display.set_mode((600, 400))
-
 pygame.display.set_caption("PyGame")
-sky = color.blueSkyLight
-R, G, B = 80, 120, 200
-BLACK = 0, 0, 0
-RED = 255, 0, 0
 Dia = True
 pygame.mouse.set_visible(False)
-
 fake_screen = screen.copy()
 player = pygame.surface.Surface((15, 30))
-
-
 jogoAtivo = True
 while jogoAtivo:
-    screen.fill(sky)
+    screen.fill(color.blueSkyLight)
 
     bloco = pygame.Rect(200, 200, 150, 150)
     porta = pygame.Rect(220,300,25,50)
@@ -67,11 +57,12 @@ while jogoAtivo:
     yMouse = posMouse[1]
     player = pygame.Surface((15, 30))
     player2 = pygame.Surface((45, 90))
-    player.fill(color.azure)
-    player.set_colorkey(color.azure)
-    player2.fill(color.azure)
-    player2.set_colorkey(color.azure)
-    characters.Skier.down(player, 0, 0, 1)
+    player.fill(color.colorKey)
+    player.set_colorkey(color.colorKey)
+    player2.fill(color.colorKey)
+    player2.set_colorkey(color.colorKey)
+    bla = characters.Skier()
+    characters.Skier.down(bla, player, 0, 0, 1)
     pygame.transform.scale(player, (45, 90), player2)
     screen.blit(player2, (xMouse, yMouse))
     pygame.display.flip()

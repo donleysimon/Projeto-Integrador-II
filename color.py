@@ -1,5 +1,6 @@
 #main color file
 
+colorKey = 1, 1, 1
 #Grayscale:
 white = 255, 255, 255
 grayVeryLight = 192, 192, 192 

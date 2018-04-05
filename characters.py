@@ -5,7 +5,7 @@ import color
 #Skier
 class Skier:
 
-    def down(screen, x, y, size):
+    def down(self, screen, x, y, size):
         #body principal
         corpo = pygame.Rect(3+x, 11+y, 9*size, 9*size)
         pygame.draw.rect(screen, color.blue, corpo)
@@ -144,14 +144,3 @@ class Skier:
         pygame.draw.rect(screen, color.green, legR3)
         legR4 = pygame.Rect(12+x, 22+y, 1*size, 3*size)
         pygame.draw.rect(screen, color.green, legR4)
-        
-        
-        
-        
-        
-        
-
-
-
-
-        
