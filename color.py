@@ -48,3 +48,4 @@ blueSkyLight = 135, 206, 250
 indigo = 75, 0, 130
 #Other colors:
 beige = 245, 245, 220
+snow = 240, 240, 240
