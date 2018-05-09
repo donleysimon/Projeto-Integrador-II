@@ -4,13 +4,13 @@ import characters
 import objects
 import random
 
-larguraTela = 600
-alturaTela = 800
+larguraTela = 800
+alturaTela = 600
 
 clock = pygame.time.Clock()
 
 pygame.init()
-screen = pygame.display.set_mode((alturaTela, larguraTela))
+screen = pygame.display.set_mode((larguraTela, alturaTela))
 pygame.display.set_caption("PyGame")
 Dia = True
 pygame.mouse.set_visible(True)
@@ -59,20 +59,21 @@ while jogoAtivo:
     screen.fill(color.snow)
 
     #Criacao de Personagem (fundo e personagem)
-    player = pygame.Surface((15, 30))
-    player2 = pygame.Surface((20, 40))
+    player = pygame.Surface((34, 62))
+    #player2 = pygame.Surface((42, 60))
 
     #Criacao das cores no Personagem
-    player.fill(color.colorKey)
+    #player.fill(color.colorKey)
     player.set_colorkey(color.colorKey)
-    player2.fill(color.colorKey)
-    player2.set_colorkey(color.colorKey)
+    #player2.fill(color.colorKey)
+    #player2.set_colorkey(color.colorKey)
 
 
     skier = characters.Skier()
-    characters.Skier.down(skier, player, 0, 0)
-    pygame.transform.scale(player, (20, 40), player2)
-    screen.blit(player2, (posX - 15, posY - 30))
+    #characters.Skier.down(skier, player, 0, 0)
+    characters.Skier.playerDown(skier, player, 0, 0)
+    #pygame.transform.scale(player, (42, 60), player2)
+    screen.blit(player, (posX - 17, posY - 31))
 
 
     # Declara e atualiza posicao do mouse
