@@ -6,182 +6,8 @@ import color
 # Skier
 class Skier:
 
-    def down(self, screen, x, y):
-        # body principal
-        corpo = pygame.Rect(3 + x, 11 + y, 9, 9)
-        pygame.draw.rect(screen, color.blue, corpo)
 
-        # head
-        pompom = pygame.Rect(8 + x, y, 2, 2)
-        pygame.draw.rect(screen, color.blue, pompom)
-
-        gorro = pygame.Rect(7 + x, 2 + y, 1, 2)
-        pygame.draw.rect(screen, color.red, gorro)
-        gorro2 = pygame.Rect(6 + x, 4 + y, 3, 3)
-        pygame.draw.rect(screen, color.red, gorro2)
-        gorro3 = pygame.Rect(5 + x, 7 + y, 5, 1)
-        pygame.draw.rect(screen, color.rose, gorro3)
-        gorro4 = pygame.Rect(5 + x, 8 + y, 5, 1)
-        pygame.draw.rect(screen, color.red, gorro4)
-        gorro5 = pygame.Rect(4 + x, 9 + y, 7, 1)
-        pygame.draw.rect(screen, color.red, gorro5)
-
-        cabeca = pygame.Rect(5 + x, 10 + y, 5, 1)
-        pygame.draw.rect(screen, color.beige, cabeca)
-        cabeca1 = pygame.Rect(5 + x, 13 + y, 2, 2)
-        pygame.draw.rect(screen, color.beige, cabeca1)
-        cabeca2 = pygame.Rect(8 + x, 13 + y, 2, 2)
-        pygame.draw.rect(screen, color.beige, cabeca2)
-        cabeca3 = pygame.Rect(7 + x, 12 + y, 1, 1)
-        pygame.draw.rect(screen, color.beige, cabeca3)
-        cabeca4 = pygame.Rect(6 + x, 15 + y, 3, 1)
-        pygame.draw.rect(screen, color.beige, cabeca4)
-
-        boca = pygame.Rect(7 + x, 14 + y, 1, 1)
-        pygame.draw.rect(screen, color.brown, boca)
-
-        oculos = pygame.Rect(5 + x, 11 + y, 5, 1)
-        pygame.draw.rect(screen, color.navy, oculos)
-        oculos2 = pygame.Rect(5 + x, 12 + y, 2, 1)
-        pygame.draw.rect(screen, color.navy, oculos2)
-        oculos3 = pygame.Rect(8 + x, 12 + y, 2, 1)
-        pygame.draw.rect(screen, color.navy, oculos3)
-
-        # body
-        braco = pygame.Rect(12 + x, 12 + y, 3, 3)
-        pygame.draw.rect(screen, color.rose, braco)
-        braco1 = pygame.Rect(1 + x, 11 + y, 2, 1)
-        pygame.draw.rect(screen, color.rose, braco1)
-        braco2 = pygame.Rect(1 + x, 15 + y, 1, 2)
-        pygame.draw.rect(screen, color.rose, braco2)
-
-        bracoR = pygame.Rect(x, 12 + y, 3, 3)
-        pygame.draw.rect(screen, color.rose, bracoR)
-        bracoR1 = pygame.Rect(12 + x, 11 + y, 2, 1)
-        pygame.draw.rect(screen, color.rose, bracoR1)
-        bracoR2 = pygame.Rect(13 + x, 15 + y, 1, 2)
-        pygame.draw.rect(screen, color.rose, bracoR2)
-
-        luva = pygame.Rect(2 + x, 15 + y, 1, 1)
-        pygame.draw.rect(screen, color.red, luva)
-        luva1 = pygame.Rect(2 + x, 16 + y, 2, 2)
-        pygame.draw.rect(screen, color.red, luva1)
-
-        luvaR = pygame.Rect(12 + x, 15 + y, 1, 1)
-        pygame.draw.rect(screen, color.red, luvaR)
-        luvaR1 = pygame.Rect(11 + x, 16 + y, 2, 2)
-        pygame.draw.rect(screen, color.red, luvaR1)
-
-        corpo1 = pygame.Rect(2 + x, 12 + y, 1, 2)
-        pygame.draw.rect(screen, color.blue, corpo1)
-        corpo2 = pygame.Rect(12 + x, 12 + y, 1, 2)
-        pygame.draw.rect(screen, color.blue, corpo2)
-
-        # ski
-        ski = pygame.Rect(2 + x, 5 + y, 3, 1)
-        pygame.draw.rect(screen, color.black, ski)
-        ski1 = pygame.Rect(3 + x, 4 + y, 1, 7)
-        pygame.draw.rect(screen, color.black, ski1)
-        ski2 = pygame.Rect(3 + x, 14 + y, 1, 2)
-        pygame.draw.rect(screen, color.black, ski2)
-        ski3 = pygame.Rect(2 + x, 18 + y, 1, 2)
-        pygame.draw.rect(screen, color.black, ski3)
-
-        skiR = pygame.Rect(10 + x, 5 + y, 3, 1)
-        pygame.draw.rect(screen, color.black, skiR)
-        skiR1 = pygame.Rect(11 + x, 4 + y, 1, 7)
-        pygame.draw.rect(screen, color.black, skiR1)
-        skiR2 = pygame.Rect(11 + x, 14 + y, 1, 2)
-        pygame.draw.rect(screen, color.black, skiR2)
-        skiR3 = pygame.Rect(12 + x, 18 + y, 1, 2)
-        pygame.draw.rect(screen, color.black, skiR3)
-
-        # legs Left
-        leg = pygame.Rect(2 + x, 20 + y, 3, 4)
-        pygame.draw.rect(screen, color.blue, leg)
-        leg1 = pygame.Rect(5 + x, 20 + y, 1, 1)
-        pygame.draw.rect(screen, color.blue, leg1)
-
-        # skis Left
-        ski4 = pygame.Rect(2 + x, 25 + y, 3, 4)
-        pygame.draw.rect(screen, color.black, ski4)
-        ski5 = pygame.Rect(2 + x, 29 + y, 1, 1)
-        pygame.draw.rect(screen, color.black, ski5)
-        ski6 = pygame.Rect(4 + x, 29 + y, 1, 1)
-        pygame.draw.rect(screen, color.black, ski6)
-        ski7 = pygame.Rect(3 + x, 26 + y, 1, 2)
-        pygame.draw.rect(screen, color.yellow, ski7)
-
-        # legs Left
-        leg2 = pygame.Rect(2 + x, 22 + y, 1, 3)
-        pygame.draw.rect(screen, color.green, leg2)
-        leg3 = pygame.Rect(3 + x, 23 + y, 1, 3)
-        pygame.draw.rect(screen, color.green, leg3)
-        leg4 = pygame.Rect(4 + x, 24 + y, 1, 3)
-        pygame.draw.rect(screen, color.green, leg4)
-
-        # legs Right
-        legR = pygame.Rect(10 + x, 20 + y, 3, 4)
-        pygame.draw.rect(screen, color.blue, legR)
-        legR1 = pygame.Rect(9 + x, 20 + y, 1, 1)
-        pygame.draw.rect(screen, color.blue, legR1)
-
-        # skis Right
-        skiR4 = pygame.Rect(10 + x, 25 + y, 3, 4)
-        pygame.draw.rect(screen, color.black, skiR4)
-        skiR5 = pygame.Rect(10 + x, 29 + y, 1, 1)
-        pygame.draw.rect(screen, color.black, skiR5)
-        skiR6 = pygame.Rect(12 + x, 29 + y, 1, 1)
-        pygame.draw.rect(screen, color.black, skiR6)
-        skiR7 = pygame.Rect(11 + x, 26 + y, 1, 2)
-        pygame.draw.rect(screen, color.yellow, skiR7)
-
-        # legs Right
-        legR2 = pygame.Rect(10 + x, 24 + y, 1, 3)
-        pygame.draw.rect(screen, color.green, legR2)
-        legR3 = pygame.Rect(11 + x, 23 + y, 1, 3)
-        pygame.draw.rect(screen, color.green, legR3)
-        legR4 = pygame.Rect(12 + x, 22 + y, 1, 3)
-        pygame.draw.rect(screen, color.green, legR4)
-
-    def rightD1(self, screen, x, y):
-        # body principal
-        corpo = pygame.Rect(3 + x, 11 + y, 9, 9)
-        pygame.draw.rect(screen, color.blue, corpo)
-
-    def right(self, screen, x, y):
-        size = 1
-        width = 15
-        height = 4
-        tilemap = [[color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.red,color.red,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey],
-                   [color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.red,color.red,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey],
-                   [color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.red,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey],
-                   [color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.red,color.red,color.red,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey]
-                   ]
-        for row in range(height):
-            for column in range (width):
-                pygame.draw.rect(screen, tilemap[row][column], (column*size,row*size,size,size))
-    def rock1(self, screen, x, y):
-        size = 1
-        width = 23
-        height = 11
-        tilemap = [[color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.black,color.black,color.black,color.black,color.black,color.black,color.black,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey],
-                   [color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.black,color.black,color.black,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.black,color.black,color.black,color.black,color.black,color.black,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey],
-                   [color.colorKey,color.colorKey,color.colorKey,color.black,color.black,color.grayDark,color.grayDark,color.grayDark,color.black,color.grayDark,color.grayLight,color.grayLight,color.black,color.grayDark,color.grayDark,color.grayDark,color.grayLight,color.black,color.black,color.colorKey,color.colorKey,color.colorKey,color.colorKey],
-                   [color.colorKey,color.colorKey,color.colorKey,color.black,color.grayDark,color.grayLight,color.grayLight,color.grayLight,color.grayDark,color.black,color.grayLight,color.grayLight,color.grayLight,color.grayLight,color.grayLight,color.black,color.grayDark,color.grayDark,color.black,color.black,color.colorKey,color.colorKey,color.colorKey],
-                   [color.colorKey,color.colorKey,color.black,color.black,color.grayDark,color.grayDark,color.grayLight,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayLight,color.grayLight,color.grayLight,color.grayDark,color.black,color.black,color.colorKey,color.colorKey],
-                   [color.colorKey,color.colorKey,color.black,color.grayLight,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayLight,color.grayDark,color.grayLight,color.grayDark,color.black,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.black,color.colorKey,color.colorKey],
-                   [color.colorKey,color.colorKey,color.black,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.black,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayLight,color.grayLight,color.black,color.grayDark,color.black,color.black,color.colorKey],
-                   [color.colorKey,color.black,color.grayDark,color.black,color.grayDark,color.grayDark,color.grayLight,color.grayLight,color.grayLight,color.grayLight,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayLight,color.black,color.colorKey],
-                   [color.colorKey,color.black,color.grayDark,color.grayDark,color.grayLight,color.grayDark,color.black,color.grayDark,color.grayLight,color.grayLight,color.grayLight,color.black,color.black,color.grayLight,color.black,color.grayLight,color.grayLight,color.grayLight,color.grayDark,color.grayDark,color.grayDark,color.black,color.colorKey],
-                   [color.black,color.black,color.grayLight,color.grayLight,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayLight,color.grayLight,color.grayLight,color.grayLight,color.grayLight,color.grayLight,color.grayLight,color.black,color.grayDark,color.black,color.black],
-                   [color.black,color.grayLight,color.grayLight,color.grayLight,color.grayLight,color.grayLight,color.grayLight,color.black,color.grayLight,color.grayLight,color.grayLight,color.grayLight,color.grayDark,color.grayDark,color.grayDark,color.black,color.grayDark,color.grayLight,color.grayLight,color.grayDark,color.grayDark,color.grayDark,color.black]
-                   ]
-        for row in range(height):
-            for column in range(width):
-                pygame.draw.rect(screen, tilemap[row][column], (column*size,row*size,size,size))
-
-    def playerDown(selfself, screen, x, y):
+    def down(selfself, screen, x, y):
         size = 2
         width = 17
         height = 31
@@ -221,3 +47,169 @@ class Skier:
             for column in range(width):
                 pygame.draw.rect(screen, tilemap[row][column], (column*size,row*size,size,size))
 
+    def right1(self, screen, x, y):
+        size = 2
+        width = 18
+        height = 31
+        tilemap = [[color.colorKey, color.colorKey, color.red, color.red, color.red, color.red, color.red, color.red,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.blue, color.black, color.colorKey, color.red, color.red, color.magenta,color.magenta, color.red, color.red, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.blue, color.blue, color.colorKey, color.colorKey, color.magenta, color.red,color.red, color.red, color.red, color.red, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.red,color.red, color.beige, color.beige, color.beige, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.beige, color.blue, color.blue, color.blue, color.beige, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.beige, color.blue, color.blue, color.beige, color.beige, color.beige, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.beige, color.beige, color.beige, color.beige, color.beige, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.beige, color.beige, color.red, color.red, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.azure, color.azure, color.beige, color.beige, color.beige, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, ],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.magenta, color.magenta,color.azure, color.azure, color.azure, color.azure, color.magenta, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.magenta, color.magenta, color.magenta,color.azure, color.azure, color.azure, color.azure, color.magenta, color.magenta, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.magenta, color.magenta, color.magenta, color.azure,color.azure, color.azure, color.azure, color.azure, color.azure, color.magenta, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.magenta, color.magenta, color.magenta, color.azure,color.azure, color.azure, color.azure, color.azure, color.azure, color.magenta, color.magenta,color.colorKey, color.colorKey, color.black, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.magenta, color.magenta, color.magenta,color.azure, color.azure, color.azure, color.azure, color.colorKey, color.magenta, color.magenta,color.magenta, color.magenta, color.red, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.magenta, color.magenta,color.magenta, color.black, color.azure, color.azure, color.azure, color.colorKey, color.magenta,color.magenta, color.magenta, color.red, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.black, color.black, color.azure, color.magenta, color.red,color.black, color.azure, color.azure, color.azure, color.azure, color.colorKey, color.colorKey,color.colorKey, color.black, color.colorKey, color.colorKey],
+                   [color.colorKey, color.black, color.yellow, color.black, color.colorKey, color.red, color.red,color.azure, color.azure, color.azure, color.azure, color.azure, color.colorKey, color.colorKey,color.colorKey, color.black, color.colorKey, color.colorKey],
+                   [color.colorKey, color.black, color.yellow, color.yellow, color.black, color.azure, color.black,color.azure, color.yellow, color.greenDark, color.azure, color.azure, color.colorKey,color.colorKey, color.colorKey, color.black, color.colorKey, color.colorKey, ],
+                   [color.colorKey, color.colorKey, color.black, color.yellow, color.black, color.black, color.azure,color.azure, color.greenDark, color.greenDark, color.greenDark, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.black, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.black, color.yellow, color.azure, color.black, color.azure,color.colorKey, color.greenDark, color.greenDark, color.greenDark, color.greenDark, color.colorKey,color.colorKey, color.colorKey, color.black, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.black, color.black, color.azure, color.azure,color.colorKey, color.colorKey, color.greenDark, color.greenDark, color.greenDark, color.colorKey,color.colorKey, color.colorKey, color.black, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.black, color.black, color.greenDark,color.greenDark, color.colorKey, color.colorKey, color.black, color.yellow, color.yellow,color.black, color.colorKey, color.colorKey, color.black, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.black, color.greenDark, color.greenDark,color.greenDark, color.colorKey, color.colorKey, color.colorKey, color.black,color.yellow,color.black, color.colorKey, color.black, color.black, color.black, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.black, color.greenDark, color.greenDark,color.greenDark, color.greenDark, color.colorKey, color.colorKey, color.black, color.yellow,color.yellow, color.black, color.colorKey, color.black, color.colorKey, color.colorKey],
+                   [color.colorKey, color.black, color.black, color.colorKey, color.colorKey, color.greenDark,color.greenDark, color.greenDark, color.colorKey, color.colorKey, color.colorKey, color.black,color.yellow, color.black, color.black, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.black, color.colorKey, color.colorKey, color.black,color.yellow, color.yellow, color.black, color.colorKey, color.colorKey, color.black, color.black,color.gray, color.black, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.black, color.colorKey, color.black, color.colorKey, color.colorKey,color.black, color.yellow,color.black, color.colorKey, color.colorKey, color.colorKey, color.black,color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.black, color.yellow,color.yellow, color.black, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.black, color.yellow,color.black, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.black, color.black, color.gray, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey,color.black, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey]
+                   ]
+        for row in range(height):
+            for column in range(width):
+                pygame.draw.rect(screen, tilemap[row][column], (column*size,row*size,size,size))
+
+    def right2(self, screen, x, y):
+        size = 2
+        width = 24
+        height = 28
+        tilemap =  [[color.colorKey, color.blue, color.blue, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.red, color.red, color.red, color.red, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.blue, color.blue, color.colorKey, color.colorKey, color.colorKey, color.red,color.red, color.red, color.red, color.red, color.red, color.magenta, color.red, color.red, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.red, color.red, color.red, color.red, color.red,color.red, color.red, color.red, color.magenta, color.red, color.red, color.red, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.red, color.red, color.magenta, color.red, color.red, color.blue,color.blue, color.beige, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.magenta, color.red, color.red, color.beige,color.blue, color.blue, color.beige, color.beige, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.beige, color.beige,color.beige, color.beige, color.beige, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.beige, color.beige,color.beige, color.beige, color.red, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.colorKey, color.black,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.azure, color.azure,color.beige, color.beige, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.black,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.magenta, color.magenta,color.magenta, color.magenta, color.azure, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black,color.colorKey, color.black, color.black, color.colorKey, color.azure, color.magenta, color.magenta,color.magenta, color.azure, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.black, color.colorKey, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.black, color.azure, color.magenta, color.magenta, color.magenta,color.azure, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.black, color.black, color.black, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.azure, color.magenta, color.magenta, color.azure,color.azure, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.black, color.colorKey, color.colorKey, color.black,color.black, color.black, color.colorKey, color.azure, color.magenta, color.magenta, color.azure,color.azure, color.magenta, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.black, color.black, color.black, color.magenta,color.azure, color.magenta, color.black, color.black, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.azure, color.red, color.red,color.black, color.colorKey, color.red, color.red, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.azure, color.azure, color.azure,color.azure, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.azure, color.azure,color.azure, color.azure, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.yellow, color.black,color.black, color.black, color.colorKey, color.colorKey, color.azure, color.azure, color.azure,color.azure, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.black,color.yellow, color.yellow, color.black, color.black, color.greenDark, color.azure, color.azure,color.azure, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.black, color.black, color.black, color.yellow, color.greenDark, color.azure,color.azure, color.greenDark, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.azure, color.azure,color.azure, color.greenDark, color.greenDark, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.black, color.yellow, color.black, color.black,color.black, color.colorKey, color.colorKey, color.colorKey, color.greenDark, color.greenDark, color.azure,color.black, color.yellow, color.black, color.black, color.black, color.colorKey, color.colorKey,color.colorKey, color.black, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.black, color.yellow,color.yellow, color.black, color.black, color.greenDark, color.greenDark, color.greenDark, color.azure,color.colorKey, color.black, color.black, color.black, color.yellow, color.black, color.black, color.black,color.black, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.black, color.black, color.black, color.yellow, color.greenDark, color.greenDark, color.greenDark,color.greenDark, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.black,color.black, color.black, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.black, color.black, color.greenDark, color.greenDark,color.greenDark, color.greenDark, color.black, color.black, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.black,color.black, color.black, color.black, color.yellow, color.black, color.black, color.colorKey,color.colorKey, color.black, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.black, color.black, color.black, color.yellow,color.black, color.black, color.black, color.colorKey, color.colorKey],
+                    [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.black, color.black, color.black, color.colorKey, color.colorKey, color.colorKey]
+            ]
+        for row in range(height):
+            for column in range(width):
+                pygame.draw.rect(screen, tilemap[row][column], (column*size,row*size,size,size))
+
+    def right3(self, screen, x, y):
+        size = 2
+        width = 24
+        height = 26
+        tilemap = [[color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.red, color.red, color.red, color.red, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.red,color.red, color.red, color.red, color.red, color.magenta, color.red, color.red, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.red, color.red, color.red,color.red, color.red, color.magenta, color.red, color.red, color.red, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.red, color.colorKey, color.colorKey,color.red, color.red, color.magenta, color.red, color.red, color.blue, color.blue, color.beige,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.red, color.colorKey, color.colorKey,color.colorKey, color.magenta, color.red, color.red, color.beige, color.blue, color.blue,color.beige, color.beige, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.red, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.beige, color.beige, color.beige, color.beige,color.beige, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.red, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.beige, color.beige, color.beige, color.beige,color.red, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.blue, color.blue, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.azure, color.azure,color.beige, color.beige, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.blue, color.blue, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.magenta, color.magenta, color.magenta,color.azure, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.azure, color.azure, color.magenta, color.magenta, color.azure,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.azure, color.azure, color.magenta, color.magenta, color.azure,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.azure, color.azure, color.magenta, color.magenta, color.azure,color.colorKey, color.colorKey, color.colorKey, color.red, color.black, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.azure, color.azure, color.magenta, color.magenta,color.magenta, color.magenta, color.magenta, color.magenta, color.red, color.red, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.azure, color.azure, color.azure, color.magenta, color.magenta,color.magenta, color.magenta, color.magenta, color.red, color.red, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.azure, color.azure, color.azure, color.azure, color.azure,color.colorKey, color.colorKey, color.colorKey, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.azure, color.azure, color.azure, color.azure, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.azure, color.azure, color.azure, color.azure,color.colorKey, color.colorKey, color.colorKey, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.azure, color.azure,color.azure, color.azure, color.colorKey, color.colorKey, color.black, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.azure, color.azure,color.azure, color.azure, color.colorKey, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.azure, color.azure,color.greenDark, color.greenDark, color.colorKey, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.azure, color.azure, color.azure,color.greenDark, color.greenDark, color.colorKey, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.greenDark, color.azure, color.azure,color.greenDark, color.greenDark, color.greenDark, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.black, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.greenDark, color.greenDark, color.greenDark, color.azure,color.greenDark, color.greenDark, color.gray, color.gray, color.gray, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.colorKey],
+                   [color.colorKey, color.black, color.black, color.black, color.black, color.black, color.black,color.black, color.greenDark, color.greenDark, color.greenDark, color.greenDark, color.greenDark,color.black, color.black, color.black, color.black, color.black, color.black, color.black,color.black, color.black, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.greenDark, color.greenDark, color.greenDark, color.greenDark,color.greenDark, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.black, color.colorKey, color.colorKey],
+                   [color.black, color.black, color.black, color.black, color.black, color.black, color.black,color.black, color.black, color.black, color.black, color.black, color.black, color.black,color.black, color.black, color.black, color.black, color.black, color.black, color.black,color.colorKey, color.colorKey, color.colorKey]
+                   ]
+        for row in range(height):
+            for column in range(width):
+                pygame.draw.rect(screen, tilemap[row][column], (column*size,row*size,size,size))
+
+
+class Monster:
+
+    def run(self, screen, x, y):
+        size = 2
+        width = 25
+        height = 43
+        tilemap = [[color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.black, color.black, color.black, color.black, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.black,color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.black,color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.black, color.black, color.black, color.black,color.grayLight, color.grayLight, color.grayLight, color.black, color.black, color.black,color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.grayLight,color.black, color.black, color.grayLight, color.black, color.grayLight, color.grayLight, color.black, color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.grayLight,color.grayLight, color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.grayLight,color.grayLight, color.red, color.grayLight, color.red, color.grayLight, color.grayLight,color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.grayLight,color.grayLight, color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.black,color.black, color.black, color.black, color.black, color.black, color.black, color.black,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.yellow,color.black, color.yellow, color.black, color.yellow, color.black, color.yellow, color.black,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.black,color.black, color.yellow, color.black, color.yellow, color.black, color.black, color.black,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.black, color.black, color.grayLight,color.black, color.black, color.black, color.black, color.black, color.grayLight, color.black,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.black, color.grayLight, color.black, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.grayLight,color.grayLight, color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.black, color.black, color.grayLight, color.black, color.black, color.black,color.grayLight, color.grayLight, color.grayLight, color.black, color.black, color.black,color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.black, color.black, color.grayLight, color.grayLight, color.grayLight,color.black, color.black, color.black, color.black, color.black, color.grayLight, color.grayLight,color.black, color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.black, color.grayLight, color.black, color.grayLight, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.grayLight,color.grayLight, color.grayLight, color.black, color.colorKey, color.black, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey],
+                   [color.black, color.grayLight, color.grayLight, color.black, color.grayLight, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.black, color.colorKey, color.black,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey],
+                   [color.black, color.grayLight, color.grayLight, color.black, color.grayLight, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.black, color.colorKey, color.colorKey,color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey],
+                   [color.black, color.grayLight, color.grayLight, color.grayLight, color.black, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.black, color.colorKey, color.colorKey,color.grayLight, color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey],
+                   [color.black, color.grayLight, color.grayLight, color.grayLight, color.black, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.black, color.colorKey, color.colorKey, color.colorKey,color.black, color.black],
+                   [color.black, color.grayLight, color.grayLight, color.grayLight, color.black, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.black, color.black, color.black,color.colorKey, color.black],
+                   [color.black, color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.black,color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.colorKey,color.black, color.black],
+                   [color.black, color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.black,color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.black, color.colorKey, color.black, color.black, color.black,color.colorKey],
+                   [color.colorKey, color.black, color.grayLight, color.grayLight, color.grayLight, color.black,color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.grayLight,color.grayLight, color.grayLight, color.black, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.black, color.colorKey, color.black,color.colorKey, color.colorKey],
+                   [color.colorKey, color.black, color.grayLight, color.grayLight, color.black, color.black,color.black, color.black, color.black, color.grayLight, color.grayLight, color.grayLight,color.grayLight, color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.black, color.grayLight, color.grayLight, color.black, color.black,color.grayLight, color.black, color.grayLight, color.black, color.grayLight, color.grayLight,color.grayLight, color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.black, color.grayLight, color.grayLight, color.black,color.black, color.black, color.black, color.grayLight, color.grayLight, color.grayLight,color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.black, color.grayLight, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.black,color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.black, color.black, color.grayLight,color.grayLight, color.grayLight, color.grayLight, color.grayLight, color.black, color.colorKey,color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.black,color.black, color.black, color.black, color.black, color.colorKey, color.black, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.black, color.colorKey, color.black,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.black, color.colorKey, color.black,color.black, color.black, color.black, color.colorKey, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.black, color.colorKey, color.black,color.black, color.colorKey, color.colorKey, color.black, color.black, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.black, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.black, color.black, color.black, color.black, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.black, color.black, color.colorKey, color.colorKey, color.black, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.black, color.colorKey, color.black, color.colorKey, color.black, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black, color.colorKey,color.black, color.colorKey, color.colorKey, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.black,color.black, color.colorKey, color.colorKey, color.black, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey],
+                   [color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.black, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,color.colorKey]
+                   ]
+        for row in range(height):
+            for column in range(width):
+                pygame.draw.rect(screen, tilemap[row][column], (column*size,row*size,size,size))

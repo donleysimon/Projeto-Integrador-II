@@ -55,6 +55,9 @@ class Rock:
         for row in range(height):
             for column in range (width):
                 pygame.draw.rect(screen, tilemap[row][column], (column*size,row*size,size,size))
+
+
+
 #Ramp
 
 #Snowman

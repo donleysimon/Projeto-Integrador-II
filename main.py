@@ -46,7 +46,7 @@ class HitBox(pygame.sprite.Sprite):
         #self.image.fill(color)
         skier = characters.Skier()
         self.image.set_colorkey((1,1,1))
-        characters.Skier.playerDown(skier, self.image, 0, 0)
+        characters.Skier.down(skier, self.image, 0, 0)
 
 
         # Fetch the rectangle object that has the dimensions of the image
@@ -109,9 +109,9 @@ while jogoAtivo:
     #player2.set_colorkey(color.colorKey)
 
     hitBox_list.update(posX - 17, posY - 31)
-    skier = characters.Skier()
+    #skier = characters.Skier()
     #characters.Skier.down(skier, player, 0, 0)
-    characters.Skier.playerDown(skier, player, 0, 0)
+    #characters.Skier.playerDown(skier, player, 0, 0)
     #pygame.transform.scale(player, (42, 60), player2)
     #screen.blit(player, (posX - 17, posY - 31))
 
