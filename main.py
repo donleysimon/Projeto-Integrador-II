@@ -4,8 +4,8 @@ import characters
 import objects
 import random
 
-larguraTela = 800
-alturaTela = 600
+larguraTela = 1280
+alturaTela = 720
 
 clock = pygame.time.Clock()
 
@@ -68,10 +68,15 @@ hitBox_Player = HitBox((1,1,1),34,62)
 hitBox_list.add(hitBox_Player)
 
 for i in range(totalArvores):
-    tree = objects.Tree(color.brown, 20, 20, velocidade, larguraTela)
+    tree = objects.Tree(color.colorKey, 44,22, velocidade, larguraTela)
 
     tree.rect.x = random.randrange(larguraTela)
     tree.rect.y = random.randrange(alturaTela)
+
+    pedra = objects.Rock()
+
+    objects.Rock.rock1(pedra, tree.image, 0, 0)
+    screen.blit(tree.image, (tree.rect.x, tree.rect.y))
 
     listaArvores.add(tree)
     listaTotal.add(tree)

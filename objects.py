@@ -13,7 +13,7 @@ class Tree(pygame.sprite.Sprite):
         super().__init__()
 
         self.image = pygame.Surface([largura, altura])
-        self.image.fill(color)
+        self.image.set_colorkey((1, 1, 1))
 
         self.rect = self.image.get_rect()
 
@@ -37,8 +37,8 @@ class Tree(pygame.sprite.Sprite):
 #Rock
 class Rock:
     def rock1(self, screen, x, y):
-        size = 1
-        width = 21
+        size = 2
+        width = 22
         height = 11
         tilemap = [[color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.black,color.black,color.black,color.black,color.black,color.black,color.black,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey],
                    [color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.black,color.black,color.black,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.grayDark,color.black,color.black,color.black,color.black,color.black,color.black,color.colorKey,color.colorKey,color.colorKey,color.colorKey,color.colorKey],
