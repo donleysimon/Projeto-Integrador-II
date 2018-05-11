@@ -7,7 +7,7 @@ import color
 class Skier:
 
 
-    def down(selfself, screen, x, y):
+    def down(self, screen, x, y):
         size = 2
         width = 17
         height = 31
