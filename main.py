@@ -23,7 +23,7 @@ posY = 300
 velocidade = 1
 
 #CriacaoObjetos
-totalArvores = 5
+totalPedras = 20
 
 listaArvores = pygame.sprite.Group()
 listaTotal = pygame.sprite.Group()
@@ -67,19 +67,20 @@ hitBox_list = pygame.sprite.Group()
 hitBox_Player = HitBox((1,1,1),34,62)
 hitBox_list.add(hitBox_Player)
 
-for i in range(totalArvores):
-    tree = objects.Tree(color.colorKey, 44,22, velocidade, larguraTela)
+for i in range(totalPedras):
+    pedras = objects.Objects(color.colorKey, 44,22, velocidade, larguraTela, listaTotal)
 
-    tree.rect.x = random.randrange(larguraTela)
-    tree.rect.y = random.randrange(alturaTela)
+    pedras.rect.x = random.randrange(larguraTela)
+    pedras.rect.y = random.randrange(alturaTela)
 
     pedra = objects.Rock()
 
-    objects.Rock.rock1(pedra, tree.image, 0, 0)
-    screen.blit(tree.image, (tree.rect.x, tree.rect.y))
+    objects.Rock.rock1(pedra, pedras.image, 0, 0)
+    screen.blit(pedras.image, (pedras.rect.x, pedras.rect.y))
 
-    listaArvores.add(tree)
-    listaTotal.add(tree)
+    listaArvores.add(pedras)
+    listaTotal.add(pedras)
+
 
 while jogoAtivo:
 
