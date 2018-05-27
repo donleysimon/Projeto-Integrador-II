@@ -1,15 +1,14 @@
 import pygame
 import color
 import random
-import math
 
-class Objects(pygame.sprite.Sprite):
+class Tree(pygame.sprite.Sprite):
 
 #Objects file
 
 #Tree
 
-    def __init__(self, color, largura, altura, velocidade, larguraTela, listaTotal):
+    def __init__(self, color, largura, altura, velocidade, larguraTela):
 
         super().__init__()
 
@@ -21,30 +20,9 @@ class Objects(pygame.sprite.Sprite):
         self.velocidade = velocidade
         self.larguraTela = larguraTela
 
-        self.listaTotal = listaTotal
-
-
     def reset_pos(self):
-
-        posIndisponivel = False
-
-        posY = random.randrange(1000, 1200)
-        posX = random.randrange(0, self.larguraTela)
-
-        for item in self.listaTotal:
-            distancia = math.sqrt(((posX - item.rect.x) * (posX - item.rect.x)) + ((posY - item.rect.y) * (posY - item.rect.y)))
-
-            if distancia < 50:
-                posIndisponivel = True
-
-
-        if posIndisponivel == False:
-            self.rect.y = posY
-            self.rect.x = posX
-        else:
-            print("resetou")
-            self.reset_pos()
-
+        self.rect.y = random.randrange(1000, 1200)
+        self.rect.x = random.randrange(0, self.larguraTela)
 
 
     def update(self):
@@ -52,6 +30,8 @@ class Objects(pygame.sprite.Sprite):
 
         if self.rect.y < 10:
             self.reset_pos()
+
+
 #Dry Tree
 
 #Rock

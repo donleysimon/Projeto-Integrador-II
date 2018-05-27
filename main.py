@@ -20,39 +20,45 @@ jogoAtivo = True
 posX = 400
 posY = 300
 
+posXMonster = 1800
+posYmonster = 1800
+posicaoAlex = random.randrange(0, 2)
+posicaoAleY = random.randrange(0, 2)
+
+if(posicaoAlex < 1):
+    posXmonster = 0
+else:
+    posXMonster = 1300
+
+if(posicaoAleY < 1):
+    posYmonster = 0
+else:
+    posYmonster = 800
+
 velocidade = 1
 
 #CriacaoObjetos
-totalPedras = 20
+totalArvores = 5
+
+fonte = pygame.font.SysFont("arial black", 34)
+perdeu = pygame.font.SysFont("arial black", 52)
 
 listaArvores = pygame.sprite.Group()
 listaTotal = pygame.sprite.Group()
 
+contar, texto = 60, '60'.rjust(3)
+pygame.time.set_timer(pygame.USEREVENT, 1000)
+font = pygame.font.SysFont('Consolas', 42)
+
 class HitBox(pygame.sprite.Sprite):
-    '''This class represents the ball
-    It derives from the "Sprite" class in Pygame
-    '''
-
-
     def __init__(self, color, width, height):
-        """ Constructor. Pass in the color of the block,
-        and its x and y position. """
-        # Call the parent class (Sprite) constructor
+
         super().__init__()
 
-        # Create an image of the block, and fill it with a color.
-        # This could also be an image loaded from the disk.
         self.image = pygame.Surface([width, height])
-        #self.image.fill(color)
         skier = characters.Skier()
         self.image.set_colorkey((1,1,1))
         characters.Skier.down(skier, self.image, 0, 0)
-
-
-        # Fetch the rectangle object that has the dimensions of the image
-        # image.
-        # Update the position of this object by setting the values
-        # of rect.x and rect.y
         self.rect = self.image.get_rect()
 
 
@@ -67,27 +73,56 @@ hitBox_list = pygame.sprite.Group()
 hitBox_Player = HitBox((1,1,1),34,62)
 hitBox_list.add(hitBox_Player)
 
-for i in range(totalPedras):
-    pedras = objects.Objects(color.colorKey, 44,22, velocidade, larguraTela, listaTotal)
+class HitBoxInimigo(pygame.sprite.Sprite):
+    def __init__(self, color, width, height):
+        """ Constructor. Pass in the color of the block,
+        and its x and y position. """
+        # Call the parent class (Sprite) constructor
+        super().__init__()
 
-    pedras.rect.x = random.randrange(larguraTela)
-    pedras.rect.y = random.randrange(alturaTela)
+        self.image = pygame.Surface([width, height])
+        yeti = characters.Monster()
+        self.image.set_colorkey((1,1,1))
+        characters.Monster.run(yeti, self.image, 0, 0)
+        self.rect = self.image.get_rect()
+
+
+    def update(self,x, y):
+        """ Called each frame. """
+        # Move block down one pixel
+        self.rect.x = x
+        self.rect.y = y
+
+hitBoxInimigo_list = pygame.sprite.Group()
+hitBoxInimigo_Player = HitBoxInimigo((1,1,1),34,62)
+hitBoxInimigo_list.add(hitBoxInimigo_Player)
+
+for i in range(totalArvores):
+    tree = objects.Tree(color.colorKey, 44,22, velocidade, larguraTela)
+
+    tree.rect.x = random.randrange(larguraTela)
+    tree.rect.y = random.randrange(alturaTela)
 
     pedra = objects.Rock()
 
-    objects.Rock.rock1(pedra, pedras.image, 0, 0)
-    screen.blit(pedras.image, (pedras.rect.x, pedras.rect.y))
+    objects.Rock.rock1(pedra, tree.image, 0, 0)
+    screen.blit(tree.image, (tree.rect.x, tree.rect.y))
 
-    listaArvores.add(pedras)
-    listaTotal.add(pedras)
-
+    listaArvores.add(tree)
+    listaTotal.add(tree)
 
 while jogoAtivo:
 
     for evento in pygame.event.get():
-        #print(evento)
         if evento.type == pygame.QUIT:
             jogoAtivo = False
+
+        if evento.type == pygame.USEREVENT:
+            contar -= 1
+            texto = str(contar).rjust(3)
+
+        #print(evento)
+
         if evento.type == pygame.KEYDOWN:
             print("Uma tecla foi pressionada")
         if evento.type == pygame.KEYUP:
@@ -153,6 +188,57 @@ while jogoAtivo:
     listaTotal.update()
 
     listaTotal.draw(screen)
+
+    # desenha tempo
+    screen.blit(font.render(texto, True, (0, 0, 0)), (32, 48))
+    # desenha inimigo
+    if contar < 30:
+
+        #pygame.draw.rect(screen, (100, 200, 200), [posXMonster, posYmonster, 40, 20])
+        hitBoxInimigo_list.draw(screen)
+        hitBoxInimigo_list.update(posXMonster, posYmonster)
+
+        if velocidade < 10:
+            if posXMonster > posX:
+                posXMonster -= 25
+            else:
+                posXMonster += 25
+
+            if posYmonster > posY:
+                posYmonster -= 25
+            else:
+                posYmonster += 25
+        elif velocidade > 10 and velocidade < 20:
+            if posXMonster > posX:
+                posXMonster -= 10
+            else:
+                posXMonster += 10
+
+            if posYmonster> posY:
+                posYmonster -= 10
+            else:
+                posYmonster += 10
+        elif velocidade > 24 and contar > 25:
+            if posXMonster > posX:
+                posXMonster -= 1
+            else:
+                posXMonster += 1
+
+            if posYmonster > posY:
+                posYmonster -= 1
+            else:
+                posYmonster += 1
+        else:
+            posYmonster -= 2
+            posXMonster -= 2
+
+        teste = pygame.sprite.spritecollide(hitBoxInimigo_Player, hitBox_list, False)
+        for inimigo in teste:
+            screen.blit(font.render("PERDEU", True, (0, 0, 0)), (640, 360))
+            #Perdeu e temporario
+            velocidade = -50
+
+    pygame.display.flip()
 
     clock.tick(30)
 
