@@ -159,7 +159,7 @@ class Skier:
                 pygame.draw.rect(screen, tilemap[row][column], (column*size,row*size,size,size))
 
     def jump(self, screen, x, y):
-        size = 1
+        size = 2
         width = 32
         height = 32
         tilemap = [[color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,
@@ -353,7 +353,7 @@ class Skier:
                 pygame.draw.rect(screen, tilemap[row][column], (column*size,row*size,size,size))
 
     def hitting(self, screen, x, y):
-        size = 1
+        size = 2
         width = 31
         heigth = 30
         tilemap = [[color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey, color.colorKey,

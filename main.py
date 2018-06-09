@@ -4,8 +4,8 @@ import characters
 import objects
 import random
 
-larguraTela = 1280
-alturaTela = 720
+larguraTela = 800
+alturaTela = 600
 
 clock = pygame.time.Clock()
 
@@ -53,15 +53,22 @@ contar, texto = 60, '60'.rjust(3)
 pygame.time.set_timer(pygame.USEREVENT, 1000)
 font = pygame.font.SysFont('Consolas', 42)
 
+pulei = False
+puloBloqueado = False
+tempoPulo = 1
+bloqueiaPulo = 2
+tempoColisao = 2
+colidi = False
+
+
+
 class HitBox(pygame.sprite.Sprite):
-    def __init__(self, color, width, height):
+    def __init__(self, color):
 
         super().__init__()
 
-        self.image = pygame.Surface([width, height])
-        skier = characters.Skier()
-        self.image.set_colorkey((1,1,1))
-        characters.Skier.down(skier, self.image, 0, 0)
+        self.image = pygame.Surface([34, 62])
+        self.image.set_colorkey((1, 1, 1))
         self.rect = self.image.get_rect()
 
 
@@ -72,9 +79,58 @@ class HitBox(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
+
+    def animacoes(self, animacao):
+        skier = characters.Skier()
+
+        if animacao == 0:
+            self.image = pygame.Surface([34, 62])
+            self.image.set_colorkey((1, 1, 1))
+            characters.Skier.down(skier, self.image, 0, 0)
+
+
+        if animacao == 1:
+            self.image = pygame.Surface([48, 55])
+            self.image.set_colorkey((1, 1, 1))
+            characters.Skier.right2(skier, self.image, 0, 0)
+            self.image = pygame.transform.flip(self.image, False, False)
+
+
+        if animacao == 2:
+            self.image = pygame.Surface([48, 55])
+            self.image.set_colorkey((1, 1, 1))
+            characters.Skier.right2(skier, self.image, 0, 0)
+            self.image = pygame.transform.flip(self.image, True, False)
+
+        if animacao == 3:
+            self.image = pygame.Surface([48, 55])
+            self.image.set_colorkey((1, 1, 1))
+            characters.Skier.right3(skier, self.image, 0, 0)
+            self.image = pygame.transform.flip(self.image, False, False)
+
+        if animacao == 4:
+            self.image = pygame.Surface([48, 55])
+            self.image.set_colorkey((1, 1, 1))
+            characters.Skier.right3(skier, self.image, 0, 0)
+            self.image = pygame.transform.flip(self.image, True, False)
+
+        if animacao == 5:
+            self.image = pygame.Surface([64, 64])
+            self.image.set_colorkey((1, 1, 1))
+            characters.Skier.jump(skier, self.image, 0, 0)
+            self.image = pygame.transform.flip(self.image, False, False)
+
+        if animacao == 6:
+            self.image = pygame.Surface([60, 60])
+            self.image.set_colorkey((1, 1, 1))
+            characters.Skier.hitting(skier, self.image, 0, 0)
+            self.image = pygame.transform.flip(self.image, False, False)
+
+
 hitBox_list = pygame.sprite.Group()
-hitBox_Player = HitBox((1,1,1),34,62)
+hitBox_Player = HitBox((1,1,1))
 hitBox_list.add(hitBox_Player)
+animacaoPlayer = 0
 
 class HitBoxInimigo(pygame.sprite.Sprite):
     def __init__(self, color, width, height):
@@ -97,7 +153,7 @@ class HitBoxInimigo(pygame.sprite.Sprite):
         self.rect.y = y
 
 hitBoxInimigo_list = pygame.sprite.Group()
-hitBoxInimigo_Player = HitBoxInimigo((1,1,1),34,62)
+hitBoxInimigo_Player = HitBoxInimigo((1,1,1),34,64)
 hitBoxInimigo_list.add(hitBoxInimigo_Player)
 
 for i in range(totalArvores):
@@ -124,6 +180,37 @@ while jogoAtivo:
             contar -= 1
             texto = str(contar).rjust(3)
 
+            if pulei == True:
+
+                tempoPulo -= 1
+                if tempoPulo <= 0:
+                    tempoPulo = 1
+                    pulei = False
+
+            if puloBloqueado == True:
+
+                bloqueiaPulo -= 1
+                if bloqueiaPulo <= 0:
+                    bloqueiaPulo = 2
+                    puloBloqueado = False
+
+            if colidi == True:
+
+                tempoColisao -= 1
+                if tempoColisao <= 0:
+                    tempoColisao = 2
+                    colidi = False
+
+
+        if evento.type == pygame.MOUSEBUTTONDOWN:
+            if pulei == False and puloBloqueado == False:
+                pulei = True
+                puloBloqueado = True
+                print("Pimba com segurança")
+
+
+
+
         #print(evento)
 
         if evento.type == pygame.KEYDOWN:
@@ -141,7 +228,7 @@ while jogoAtivo:
                     Dia = True
     screen.fill(color.snow)
 
-    hitBox_list.draw(screen)
+
     #Criacao de Personagem (fundo e personagem)
     player = pygame.Surface((34, 62))
     #player2 = pygame.Surface((42, 60))
@@ -153,6 +240,13 @@ while jogoAtivo:
     #player2.set_colorkey(color.colorKey)
 
     hitBox_list.update(posX - 17, posY - 31)
+
+
+    hitBox_Player.animacoes(animacaoPlayer)
+    hitBox_list.draw(screen)
+
+
+
     #skier = characters.Skier()
     #characters.Skier.down(skier, player, 0, 0)
     #characters.Skier.playerDown(skier, player, 0, 0)
@@ -161,7 +255,9 @@ while jogoAtivo:
 
     blocks_hit_list = pygame.sprite.spritecollide(hitBox_Player, listaTotal, False)
     for block in blocks_hit_list:
-        velocidade = 0
+        if pulei == False and colidi == False:
+            velocidade = 0
+            colidi = True
 
     # Declara e atualiza posicao do mouse
     posMouse = pygame.mouse.get_pos()
@@ -178,12 +274,29 @@ while jogoAtivo:
         if velocidade > 0:
             velocidade -= 0.5
 
+    if colidi == False:
 
-    if xMouse > (posX + 50) :
-        posX += 5
-    elif xMouse < (posX - 50):
-        posX -= 5
+        if pulei == False:
 
+            if xMouse > (posX + 50):
+                posX += 5
+                if velocidade > 0:
+                    animacaoPlayer = 1
+                else:
+                    animacaoPlayer = 3
+
+            elif xMouse < (posX - 50):
+                posX -= 5
+                if velocidade > 0:
+                    animacaoPlayer = 2
+                else:
+                    animacaoPlayer = 4
+            else:
+                animacaoPlayer = 0
+        else:
+            animacaoPlayer = 5
+    else:
+        animacaoPlayer = 6
 
     for obj in listaArvores:
         obj.velocidade = velocidade
