@@ -25,6 +25,9 @@ posYmonster = 1800
 posicaoAlex = random.randrange(0, 2)
 posicaoAleY = random.randrange(0, 2)
 
+acabou = 50
+acaba = 0
+
 if(posicaoAlex < 1):
     posXmonster = 0
 else:
@@ -192,7 +195,7 @@ while jogoAtivo:
     # desenha tempo
     screen.blit(font.render(texto, True, (0, 0, 0)), (32, 48))
     # desenha inimigo
-    if contar < 30:
+    if contar < 55 and contar > 50:
 
         #pygame.draw.rect(screen, (100, 200, 200), [posXMonster, posYmonster, 40, 20])
         hitBoxInimigo_list.draw(screen)
@@ -237,6 +240,21 @@ while jogoAtivo:
             screen.blit(font.render("PERDEU", True, (0, 0, 0)), (640, 360))
             #Perdeu e temporario
             velocidade = -50
+
+            if acaba < acabou:
+                acaba += 1
+
+            if acaba == 50:
+                jogoAtivo = False
+
+    if contar <= 50:
+        screen.blit(font.render("GANHOU", True, (0, 0, 0)), (640, 360))
+
+        if acaba < acabou:
+            acaba += 1
+
+        if acaba == 50:
+            jogoAtivo = False
 
     pygame.display.flip()
 
