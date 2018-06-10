@@ -4,8 +4,21 @@ import characters
 import objects
 import random
 
-larguraTela = 800
-alturaTela = 600
+pygame.mixer.pre_init(44100, -16, 2, 2048) # setup mixer to avoid sound lag
+
+pygame.init()
+
+pygame.mixer.init()
+
+pygame.mixer.music.load('nevada.mp3')
+
+pygame.mixer.music.play(-1)
+
+
+#pygame.mixer.music.play(1,0)
+
+larguraTela = 1280
+alturaTela = 720
 
 clock = pygame.time.Clock()
 
@@ -59,6 +72,8 @@ tempoPulo = 1
 bloqueiaPulo = 2
 tempoColisao = 2
 colidi = False
+tempoComeu = 10
+comeu = False
 
 
 
@@ -84,7 +99,7 @@ class HitBox(pygame.sprite.Sprite):
         skier = characters.Skier()
 
         if animacao == 0:
-            self.image = pygame.Surface([34, 62])
+            self.image = pygame.Surface([32, 62])
             self.image.set_colorkey((1, 1, 1))
             characters.Skier.down(skier, self.image, 0, 0)
 
@@ -126,6 +141,12 @@ class HitBox(pygame.sprite.Sprite):
             characters.Skier.hitting(skier, self.image, 0, 0)
             self.image = pygame.transform.flip(self.image, False, False)
 
+        if animacao == 7:
+            self.image = pygame.Surface([60, 60])
+            self.image.set_colorkey((1, 1, 1))
+            characters.Skier.onFloor(skier, self.image, 0, 0)
+            self.image = pygame.transform.flip(self.image, False, False)
+
 
 hitBox_list = pygame.sprite.Group()
 hitBox_Player = HitBox((1,1,1))
@@ -140,9 +161,9 @@ class HitBoxInimigo(pygame.sprite.Sprite):
         super().__init__()
 
         self.image = pygame.Surface([width, height])
-        yeti = characters.Monster()
+        yeti = characters.Monster
         self.image.set_colorkey((1,1,1))
-        characters.Monster.run(yeti, self.image, 0, 0)
+        characters.Monster.yetiCelebrate(yeti, self.image, 0, 0)
         self.rect = self.image.get_rect()
 
 
@@ -152,9 +173,47 @@ class HitBoxInimigo(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
+    def animacoes(self, animacao):
+        moster = characters.Monster()
+
+        if animacao == 0:
+            self.image = pygame.Surface([50, 86])
+            self.image.set_colorkey((1, 1, 1))
+            characters.Monster.yetiRun(moster, self.image, 0, 0)
+
+        if animacao == 1:
+            self.image = pygame.Surface([58, 75])
+            self.image.set_colorkey((1, 1, 1))
+            characters.Monster.yetiEating1(moster, self.image, 0, 0)
+            self.image = pygame.transform.flip(self.image, False, False)
+
+        if animacao == 2:
+            self.image = pygame.Surface([40, 80])
+            self.image.set_colorkey((1, 1, 1))
+            characters.Monster.yetiEating2(moster, self.image, 0, 0)
+            self.image = pygame.transform.flip(self.image, True, False)
+
+        if animacao == 3:
+            self.image = pygame.Surface([40, 73])
+            self.image.set_colorkey((1, 1, 1))
+            characters.Monster.yetiEating3(moster, self.image, 0, 0)
+            self.image = pygame.transform.flip(self.image, False, False)
+
+        if animacao == 4:
+            self.image = pygame.Surface([64, 80])
+            self.image.set_colorkey((1, 1, 1))
+            characters.Monster.yetiCelebrate(moster, self.image, 0, 0)
+
+        if animacao == 5:
+            self.image = pygame.Surface([50, 86])
+            self.image.set_colorkey((1, 1, 1))
+            characters.Monster.yetiRun(moster, self.image, 0, 0)
+            self.image = pygame.transform.flip(self.image, True, False)
+
 hitBoxInimigo_list = pygame.sprite.Group()
 hitBoxInimigo_Player = HitBoxInimigo((1,1,1),34,64)
 hitBoxInimigo_list.add(hitBoxInimigo_Player)
+animacaoInimigo = 0
 
 for i in range(totalArvores):
     tree = objects.Tree(color.colorKey, 44,22, velocidade, larguraTela)
@@ -209,8 +268,6 @@ while jogoAtivo:
                 print("Pimba com segurança")
 
 
-
-
         #print(evento)
 
         if evento.type == pygame.KEYDOWN:
@@ -228,30 +285,18 @@ while jogoAtivo:
                     Dia = True
     screen.fill(color.snow)
 
-
     #Criacao de Personagem (fundo e personagem)
     player = pygame.Surface((34, 62))
-    #player2 = pygame.Surface((42, 60))
 
-    #Criacao das cores no Personagem
-    #player.fill(color.colorKey)
     player.set_colorkey(color.colorKey)
-    #player2.fill(color.colorKey)
-    #player2.set_colorkey(color.colorKey)
+
 
     hitBox_list.update(posX - 17, posY - 31)
 
-
     hitBox_Player.animacoes(animacaoPlayer)
-    hitBox_list.draw(screen)
-
-
-
-    #skier = characters.Skier()
-    #characters.Skier.down(skier, player, 0, 0)
-    #characters.Skier.playerDown(skier, player, 0, 0)
-    #pygame.transform.scale(player, (42, 60), player2)
-    #screen.blit(player, (posX - 17, posY - 31))
+    hitBoxInimigo_Player.animacoes(animacaoInimigo)
+    if comeu == False:
+        hitBox_list.draw(screen)
 
     blocks_hit_list = pygame.sprite.spritecollide(hitBox_Player, listaTotal, False)
     for block in blocks_hit_list:
@@ -264,7 +309,7 @@ while jogoAtivo:
     xMouse = posMouse[0]
     yMouse = posMouse[1]
 
-    if yMouse > 300 :
+    if yMouse > 300 and comeu == False:
 
         if velocidade < 25:
             velocidade += 0.1
@@ -274,7 +319,7 @@ while jogoAtivo:
         if velocidade > 0:
             velocidade -= 0.5
 
-    if colidi == False:
+    if colidi == False and comeu == False:
 
         if pulei == False:
 
@@ -308,38 +353,41 @@ while jogoAtivo:
     # desenha tempo
     screen.blit(font.render(texto, True, (0, 0, 0)), (32, 48))
     # desenha inimigo
-    if contar < 55 and contar > 50:
 
+    if contar < 55 and contar > 50:
         #pygame.draw.rect(screen, (100, 200, 200), [posXMonster, posYmonster, 40, 20])
         hitBoxInimigo_list.draw(screen)
         hitBoxInimigo_list.update(posXMonster, posYmonster)
 
-        if velocidade < 10:
+        if velocidade < 10 and comeu == False:
             if posXMonster > posX:
                 posXMonster -= 25
+                animacaoInimigo = 5
             else:
                 posXMonster += 25
-
+                animacaoInimigo = 0
             if posYmonster > posY:
                 posYmonster -= 25
             else:
                 posYmonster += 25
-        elif velocidade > 10 and velocidade < 20:
+        elif velocidade > 10 and velocidade < 20 and comeu == False:
             if posXMonster > posX:
                 posXMonster -= 10
+                animacaoInimigo = 5
             else:
                 posXMonster += 10
-
+                animacaoInimigo = 0
             if posYmonster> posY:
                 posYmonster -= 10
             else:
                 posYmonster += 10
-        elif velocidade > 24 and contar > 25:
+        elif velocidade > 24 and contar > 25 and comeu == False:
             if posXMonster > posX:
                 posXMonster -= 1
+                animacaoInimigo = 5
             else:
                 posXMonster += 1
-
+                animacaoInimigo = 0
             if posYmonster > posY:
                 posYmonster -= 1
             else:
@@ -350,9 +398,22 @@ while jogoAtivo:
 
         teste = pygame.sprite.spritecollide(hitBoxInimigo_Player, hitBox_list, False)
         for inimigo in teste:
-            screen.blit(font.render("PERDEU", True, (0, 0, 0)), (640, 360))
+            #screen.blit(font.render("PERDEU", True, (0, 0, 0)), (640, 360))
             #Perdeu e temporario
-            velocidade = -50
+            tempoComeu -= 1
+            comeu = True
+            if tempoComeu < 10 and tempoComeu > 8:
+                animacaoInimigo = 1
+                pygame.mixer.music.load('gobble.wav')
+                pygame.mixer.music.play(0)
+            elif tempoComeu < 8 and tempoComeu > 6:
+                animacaoInimigo = 2
+            elif tempoComeu < 4 and tempoComeu > 2:
+                animacaoInimigo = 3
+            elif tempoComeu < 2 and tempoComeu > 0:
+                animacaoInimigo = 4
+                pygame.mixer.music.load('argh.wav')
+                pygame.mixer.music.play(0)
 
             if acaba < acabou:
                 acaba += 1
