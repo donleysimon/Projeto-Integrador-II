@@ -54,12 +54,17 @@ else:
 velocidade = 1
 
 #CriacaoObjetos
-totalArvores = 5
+totalPedras = 4
+totalArvoresG = 5
+totalArvoresPequenas = 5
+totalBuracoNeve = 5
 
 fonte = pygame.font.SysFont("arial black", 34)
 perdeu = pygame.font.SysFont("arial black", 52)
 
 listaArvores = pygame.sprite.Group()
+listaPedras = pygame.sprite.Group()
+listaObjetosAleatorios = pygame.sprite.Group()
 listaTotal = pygame.sprite.Group()
 
 contar, texto = 60, '60'.rjust(3)
@@ -215,19 +220,57 @@ hitBoxInimigo_Player = HitBoxInimigo((1,1,1),34,64)
 hitBoxInimigo_list.add(hitBoxInimigo_Player)
 animacaoInimigo = 0
 
-for i in range(totalArvores):
-    tree = objects.Tree(color.colorKey, 44,22, velocidade, larguraTela)
+for i in range(totalPedras):
+    pedras = objects.Tree(color.colorKey, 44,22, velocidade, larguraTela)
 
-    tree.rect.x = random.randrange(larguraTela)
-    tree.rect.y = random.randrange(alturaTela)
+    pedras.reset_pos()
 
     pedra = objects.Rock()
 
-    objects.Rock.rock1(pedra, tree.image, 0, 0)
-    screen.blit(tree.image, (tree.rect.x, tree.rect.y))
+    objects.Rock.rock1(pedra, pedras.image, 0, 0)
+    screen.blit(pedras.image, (pedras.rect.x, pedras.rect.y))
 
-    listaArvores.add(tree)
-    listaTotal.add(tree)
+    listaPedras.add(pedras)
+    listaTotal.add(pedras)
+
+for i in range(totalArvoresG):
+    arvoreSeca = objects.Tree(color.colorKey, 30,63, velocidade, larguraTela)
+
+    arvoreSeca.reset_pos()
+
+    arvoreS = objects.Rock()
+
+    objects.Rock.treeGiant(arvoreSeca, arvoreSeca.image, 0, 0)
+    screen.blit(arvoreSeca.image, (arvoreSeca.rect.x, arvoreSeca.rect.y))
+
+    listaArvores.add(arvoreSeca)
+    listaTotal.add(arvoreSeca)
+
+for i in range(totalPedras):
+    pedras2 = objects.Tree(color.colorKey, 32,24, velocidade, larguraTela)
+
+    pedras2.reset_pos()
+
+    pedraTwo = objects.Rock()
+
+    objects.Rock.rock2(pedras2, pedras2.image, 0, 0)
+    screen.blit(pedras2.image, (pedras2.rect.x, pedras2.rect.y))
+
+    listaPedras.add(pedras2)
+    listaTotal.add(pedras2)
+
+for i in range(totalBuracoNeve):
+    buraco = objects.Tree(color.colorKey, 50,24, velocidade, larguraTela)
+
+    buraco.reset_pos()
+
+    buracoNeve = objects.Rock()
+
+    objects.Rock.snowSoft2(buraco, buraco.image, 0, 0)
+    screen.blit(buraco.image, (buraco.rect.x, buraco.rect.y))
+
+    listaObjetosAleatorios.add(buraco)
+    listaTotal.add(buraco)
 
 while jogoAtivo:
 
@@ -343,7 +386,7 @@ while jogoAtivo:
     else:
         animacaoPlayer = 6
 
-    for obj in listaArvores:
+    for obj in listaTotal:
         obj.velocidade = velocidade
 
     listaTotal.update()
