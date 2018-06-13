@@ -58,6 +58,9 @@ totalPedras = 4
 totalArvoresG = 5
 totalArvoresPequenas = 5
 totalBuracoNeve = 5
+totalRampas = 5
+totalPlacas = 8
+posicionaPlacas = 0
 
 fonte = pygame.font.SysFont("arial black", 34)
 perdeu = pygame.font.SysFont("arial black", 52)
@@ -65,6 +68,7 @@ perdeu = pygame.font.SysFont("arial black", 52)
 listaArvores = pygame.sprite.Group()
 listaPedras = pygame.sprite.Group()
 listaObjetosAleatorios = pygame.sprite.Group()
+listaBuracos = pygame.sprite.Group()
 listaTotal = pygame.sprite.Group()
 
 contar, texto = 60, '60'.rjust(3)
@@ -234,17 +238,19 @@ for i in range(totalPedras):
     listaTotal.add(pedras)
 
 for i in range(totalArvoresG):
-    arvoreSeca = objects.Tree(color.colorKey, 30,63, velocidade, larguraTela)
+    arvoreGigante = objects.Tree(color.colorKey, 30,63, velocidade, larguraTela)
 
-    arvoreSeca.reset_pos()
+    arvoreGigante.reset_pos()
 
     arvoreS = objects.Rock()
 
-    objects.Rock.treeGiant(arvoreSeca, arvoreSeca.image, 0, 0)
-    screen.blit(arvoreSeca.image, (arvoreSeca.rect.x, arvoreSeca.rect.y))
+    objects.Rock.treeGiant(arvoreGigante, arvoreGigante.image, 0, 0)
+    screen.blit(arvoreGigante.image, (arvoreGigante.rect.x, arvoreGigante.rect.y))
 
-    listaArvores.add(arvoreSeca)
-    listaTotal.add(arvoreSeca)
+    listaArvores.add(arvoreGigante)
+    listaTotal.add(arvoreGigante)
+
+
 
 for i in range(totalPedras):
     pedras2 = objects.Tree(color.colorKey, 32,24, velocidade, larguraTela)
@@ -269,8 +275,62 @@ for i in range(totalBuracoNeve):
     objects.Rock.snowSoft2(buraco, buraco.image, 0, 0)
     screen.blit(buraco.image, (buraco.rect.x, buraco.rect.y))
 
-    listaObjetosAleatorios.add(buraco)
+    listaBuracos.add(buraco)
     listaTotal.add(buraco)
+
+for i in range(totalRampas):
+    rampas = objects.Tree(color.colorKey, 60,14, velocidade, larguraTela)
+
+    rampas.reset_pos()
+
+    rampasGrandes = objects.Rock()
+
+    objects.Rock.ramp(rampas, rampas.image, 0, 0)
+    screen.blit(rampas.image, (rampas.rect.x, rampas.rect.y))
+
+    listaObjetosAleatorios.add(rampas)
+
+for i in range(totalPlacas):
+    placas = objects.Tree(color.colorKey, 42,27, velocidade, larguraTela)
+
+    placas.rect.y = 400
+    placas.rect.x = posicionaPlacas
+
+    placasGrandes = objects.Rock()
+
+    objects.Rock.startSign(placas, placas.image, 0, 0)
+    screen.blit(placas.image, (placas.rect.x, placas.rect.y))
+
+    listaTotal.add(placas)
+    posicionaPlacas += 200
+
+'''for i in range(totalBuracoNeve):
+    buraco = objects.Tree(color.colorKey, 50,24, velocidade, larguraTela)
+
+    buraco.reset_pos()
+
+    buracoNeve = objects.Rock()
+
+    objects.Rock.snowSoft1(buraco, buraco.image, 0, 0)
+    screen.blit(buraco.image, (buraco.rect.x, buraco.rect.y))
+
+    listaBuracos.add(buraco)
+    listaTotal.add(buraco)
+
+for i in range(totalArvoresG):
+    arvoreGigante = objects.Tree(color.colorKey, 30,63, velocidade, larguraTela)
+
+    arvoreGigante.reset_pos()
+
+    arvoreS = objects.Rock()
+
+    objects.Rock.treeFire1(arvoreGigante, arvoreGigante.image, 0, 0)
+    screen.blit(arvoreGigante.image, (arvoreGigante.rect.x, arvoreGigante.rect.y))
+
+    listaArvores.add(arvoreGigante)
+    listaTotal.add(arvoreGigante)'''
+
+
 
 while jogoAtivo:
 
@@ -347,6 +407,11 @@ while jogoAtivo:
             velocidade = 0
             colidi = True
 
+    blockRampas = pygame.sprite.spritecollide(hitBox_Player, listaObjetosAleatorios, False)
+    for block in blockRampas:
+        if pulei == False and colidi == False:
+            pulei = True
+
     # Declara e atualiza posicao do mouse
     posMouse = pygame.mouse.get_pos()
     xMouse = posMouse[0]
@@ -389,9 +454,14 @@ while jogoAtivo:
     for obj in listaTotal:
         obj.velocidade = velocidade
 
+    for obj in listaObjetosAleatorios:
+        obj.velocidade = velocidade
+
     listaTotal.update()
+    listaObjetosAleatorios.update()
 
     listaTotal.draw(screen)
+    listaObjetosAleatorios.draw(screen)
 
     # desenha tempo
     screen.blit(font.render(texto, True, (0, 0, 0)), (32, 48))
