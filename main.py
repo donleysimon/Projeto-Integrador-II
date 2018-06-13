@@ -640,3 +640,4 @@ def mainGame():
 
 gameIntro()
 mainGame()
+quitGame()
