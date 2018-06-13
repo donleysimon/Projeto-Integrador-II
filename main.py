@@ -238,7 +238,7 @@ for i in range(totalPedras):
     listaTotal.add(pedras)
 
 for i in range(totalArvoresG):
-    arvoreGigante = objects.Tree(color.colorKey, 30,63, velocidade, larguraTela)
+    arvoreGigante = objects.Tree(color.colorKey, 64,128, velocidade, larguraTela)
 
     arvoreGigante.reset_pos()
 
@@ -253,7 +253,7 @@ for i in range(totalArvoresG):
 
 
 for i in range(totalPedras):
-    pedras2 = objects.Tree(color.colorKey, 32,24, velocidade, larguraTela)
+    pedras2 = objects.Tree(color.colorKey, 32,22, velocidade, larguraTela)
 
     pedras2.reset_pos()
 
@@ -266,7 +266,7 @@ for i in range(totalPedras):
     listaTotal.add(pedras2)
 
 for i in range(totalBuracoNeve):
-    buraco = objects.Tree(color.colorKey, 50,24, velocidade, larguraTela)
+    buraco = objects.Tree(color.colorKey, 64,32, velocidade, larguraTela)
 
     buraco.reset_pos()
 
@@ -279,7 +279,7 @@ for i in range(totalBuracoNeve):
     listaTotal.add(buraco)
 
 for i in range(totalRampas):
-    rampas = objects.Tree(color.colorKey, 60,14, velocidade, larguraTela)
+    rampas = objects.Tree(color.colorKey, 64,14, velocidade, larguraTela)
 
     rampas.reset_pos()
 
@@ -304,8 +304,8 @@ for i in range(totalPlacas):
     listaTotal.add(placas)
     posicionaPlacas += 200
 
-'''for i in range(totalBuracoNeve):
-    buraco = objects.Tree(color.colorKey, 50,24, velocidade, larguraTela)
+for i in range(totalBuracoNeve):
+    buraco = objects.Tree(color.colorKey, 42,8, velocidade, larguraTela)
 
     buraco.reset_pos()
 
@@ -318,18 +318,43 @@ for i in range(totalPlacas):
     listaTotal.add(buraco)
 
 for i in range(totalArvoresG):
-    arvoreGigante = objects.Tree(color.colorKey, 30,63, velocidade, larguraTela)
+    arvoreFire = objects.Tree(color.colorKey, 44,54, velocidade, larguraTela)
 
-    arvoreGigante.reset_pos()
+    arvoreFire.reset_pos()
 
     arvoreS = objects.Rock()
 
-    objects.Rock.treeFire1(arvoreGigante, arvoreGigante.image, 0, 0)
-    screen.blit(arvoreGigante.image, (arvoreGigante.rect.x, arvoreGigante.rect.y))
+    objects.Rock.treeFire1(arvoreFire, arvoreFire.image, 0, 0)
+    screen.blit(arvoreFire.image, (arvoreFire.rect.x, arvoreFire.rect.y))
 
-    listaArvores.add(arvoreGigante)
-    listaTotal.add(arvoreGigante)'''
+    listaArvores.add(arvoreFire)
+    listaTotal.add(arvoreFire)
 
+for i in range(totalArvoresG):
+    arvoreDry = objects.Tree(color.colorKey, 44,54, velocidade, larguraTela)
+
+    arvoreDry.reset_pos()
+
+    arvoreS = objects.Rock()
+
+    objects.Rock.treeDry(arvoreDry, arvoreDry.image, 0, 0)
+    screen.blit(arvoreDry.image, (arvoreDry.rect.x, arvoreDry.rect.y))
+
+    listaArvores.add(arvoreDry)
+    listaTotal.add(arvoreDry)
+
+for i in range(totalArvoresG):
+    arvoreSmall = objects.Tree(color.colorKey, 56,64, velocidade, larguraTela)
+
+    arvoreSmall.reset_pos()
+
+    arvoreS = objects.Rock()
+
+    objects.Rock.treeSmall(arvoreSmall, arvoreSmall.image, 0, 0)
+    screen.blit(arvoreSmall.image, (arvoreSmall.rect.x, arvoreSmall.rect.y))
+
+    listaArvores.add(arvoreSmall)
+    listaTotal.add(arvoreSmall)
 
 
 while jogoAtivo:
