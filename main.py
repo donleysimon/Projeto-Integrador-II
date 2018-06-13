@@ -10,7 +10,7 @@ pygame.init()
 
 pygame.mixer.init()
 
-pygame.mixer.music.load('nevada.mp3')
+pygame.mixer.music.load('assets/sounds/nevada.mp3')
 
 pygame.mixer.music.play(-1)
 
@@ -85,6 +85,53 @@ tempoComeu = 10
 comeu = False
 
 
+def text_objects(text, font, color):
+    textSurface = font.render(text, True, color)
+    return textSurface, textSurface.get_rect()
+
+def button(label,x,y,width,height,color1,color2,action=None):
+    mouse = pygame.mouse.get_pos()
+    click = pygame.mouse.get_pressed()
+    if x+width > mouse[0] > x and y+height > mouse[1] > y:
+        pygame.draw.rect(screen, color2,(x,y,width,height))
+        if click[0] == 1 and action != None:
+            action()
+    else:
+        pygame.draw.rect(screen, color1, (x, y, width, height))
+    smallText = pygame.font.SysFont("assets/fonts/CHILLER.TTF", 18)
+    textSurf, textRect = text_objects(label, smallText, color.black)
+    textRect.center = ((x+(width/2)), (y+(height/2)))
+    screen.blit(textSurf, textRect)
+
+def quitGame():
+    #termina o jogo
+    pygame.quit()
+
+def gameIntro():
+
+    intro = True
+
+    while intro:
+        for event in pygame.event.get():
+            print(event)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+        background = pygame.image.load("assets/images/menu.png").convert()
+        screen.blit(background, (0, 0))
+
+
+
+        button("Jogar", 1000, 350, 120, 60, color.golden, color.goldenDark, mainGame)
+
+        button("Sair", 1000, 450, 120, 60, color.golden, color.goldenDark, quitGame)
+
+        pygame.display.update()
+        clock.tick(45)
+        pygame.display.flip()
+
+
 
 class HitBox(pygame.sprite.Sprite):
     def __init__(self, color):
@@ -157,10 +204,7 @@ class HitBox(pygame.sprite.Sprite):
             self.image = pygame.transform.flip(self.image, False, False)
 
 
-hitBox_list = pygame.sprite.Group()
-hitBox_Player = HitBox((1,1,1))
-hitBox_list.add(hitBox_Player)
-animacaoPlayer = 0
+
 
 class HitBoxInimigo(pygame.sprite.Sprite):
     def __init__(self, color, width, height):
@@ -219,339 +263,362 @@ class HitBoxInimigo(pygame.sprite.Sprite):
             characters.Monster.yetiRun(moster, self.image, 0, 0)
             self.image = pygame.transform.flip(self.image, True, False)
 
-hitBoxInimigo_list = pygame.sprite.Group()
-hitBoxInimigo_Player = HitBoxInimigo((1,1,1),34,64)
-hitBoxInimigo_list.add(hitBoxInimigo_Player)
-animacaoInimigo = 0
 
-for i in range(totalPedras):
-    pedras = objects.Tree(color.colorKey, 44,22, velocidade, larguraTela)
 
-    pedras.reset_pos()
 
-    pedra = objects.Rock()
+def mainGame():
 
-    objects.Rock.rock1(pedra, pedras.image, 0, 0)
-    screen.blit(pedras.image, (pedras.rect.x, pedras.rect.y))
+    hitBox_list = pygame.sprite.Group()
+    hitBox_Player = HitBox((1, 1, 1))
+    hitBox_list.add(hitBox_Player)
+    animacaoPlayer = 0
 
-    listaPedras.add(pedras)
-    listaTotal.add(pedras)
+    hitBoxInimigo_list = pygame.sprite.Group()
+    hitBoxInimigo_Player = HitBoxInimigo((1, 1, 1), 34, 64)
+    hitBoxInimigo_list.add(hitBoxInimigo_Player)
+    animacaoInimigo = 0
 
-for i in range(totalArvoresG):
-    arvoreGigante = objects.Tree(color.colorKey, 64,128, velocidade, larguraTela)
+    global jogoAtivo
+    global contar
+    global velocidade
+    global texto
+    global posX, posY
+    global posXMonster, posXmonster
+    global posYmonster
+    global posicionaPlacas, comeu, tempoComeu
+    global colidi, tempoColisao, pulei, puloBloqueado, tempoPulo, bloqueiaPulo, acaba, acabou
 
-    arvoreGigante.reset_pos()
+    for i in range(totalPedras):
+        pedras = objects.Tree(color.colorKey, 44, 22, velocidade, larguraTela)
 
-    arvoreS = objects.Rock()
+        pedras.reset_pos()
 
-    objects.Rock.treeGiant(arvoreGigante, arvoreGigante.image, 0, 0)
-    screen.blit(arvoreGigante.image, (arvoreGigante.rect.x, arvoreGigante.rect.y))
+        pedra = objects.Rock()
 
-    listaArvores.add(arvoreGigante)
-    listaTotal.add(arvoreGigante)
+        objects.Rock.rock1(pedra, pedras.image, 0, 0)
+        screen.blit(pedras.image, (pedras.rect.x, pedras.rect.y))
 
+        listaPedras.add(pedras)
+        listaTotal.add(pedras)
 
+    for i in range(totalArvoresG):
+        arvoreGigante = objects.Tree(color.colorKey, 64, 128, velocidade, larguraTela)
 
-for i in range(totalPedras):
-    pedras2 = objects.Tree(color.colorKey, 32,22, velocidade, larguraTela)
+        arvoreGigante.reset_pos()
 
-    pedras2.reset_pos()
+        arvoreS = objects.Rock()
 
-    pedraTwo = objects.Rock()
+        objects.Rock.treeGiant(arvoreGigante, arvoreGigante.image, 0, 0)
+        screen.blit(arvoreGigante.image, (arvoreGigante.rect.x, arvoreGigante.rect.y))
 
-    objects.Rock.rock2(pedras2, pedras2.image, 0, 0)
-    screen.blit(pedras2.image, (pedras2.rect.x, pedras2.rect.y))
+        listaArvores.add(arvoreGigante)
+        listaTotal.add(arvoreGigante)
 
-    listaPedras.add(pedras2)
-    listaTotal.add(pedras2)
+    for i in range(totalPedras):
+        pedras2 = objects.Tree(color.colorKey, 32, 22, velocidade, larguraTela)
 
-for i in range(totalBuracoNeve):
-    buraco = objects.Tree(color.colorKey, 64,32, velocidade, larguraTela)
+        pedras2.reset_pos()
 
-    buraco.reset_pos()
+        pedraTwo = objects.Rock()
 
-    buracoNeve = objects.Rock()
+        objects.Rock.rock2(pedras2, pedras2.image, 0, 0)
+        screen.blit(pedras2.image, (pedras2.rect.x, pedras2.rect.y))
 
-    objects.Rock.snowSoft2(buraco, buraco.image, 0, 0)
-    screen.blit(buraco.image, (buraco.rect.x, buraco.rect.y))
+        listaPedras.add(pedras2)
+        listaTotal.add(pedras2)
 
-    listaBuracos.add(buraco)
-    listaTotal.add(buraco)
+    for i in range(totalBuracoNeve):
+        buraco = objects.Tree(color.colorKey, 64, 32, velocidade, larguraTela)
 
-for i in range(totalRampas):
-    rampas = objects.Tree(color.colorKey, 64,14, velocidade, larguraTela)
+        buraco.reset_pos()
 
-    rampas.reset_pos()
+        buracoNeve = objects.Rock()
 
-    rampasGrandes = objects.Rock()
+        objects.Rock.snowSoft2(buraco, buraco.image, 0, 0)
+        screen.blit(buraco.image, (buraco.rect.x, buraco.rect.y))
 
-    objects.Rock.ramp(rampas, rampas.image, 0, 0)
-    screen.blit(rampas.image, (rampas.rect.x, rampas.rect.y))
+        listaBuracos.add(buraco)
+        listaTotal.add(buraco)
 
-    listaObjetosAleatorios.add(rampas)
+    for i in range(totalRampas):
+        rampas = objects.Tree(color.colorKey, 64, 14, velocidade, larguraTela)
 
-for i in range(totalPlacas):
-    placas = objects.Tree(color.colorKey, 42,27, velocidade, larguraTela)
+        rampas.reset_pos()
 
-    placas.rect.y = 400
-    placas.rect.x = posicionaPlacas
+        rampasGrandes = objects.Rock()
 
-    placasGrandes = objects.Rock()
+        objects.Rock.ramp(rampas, rampas.image, 0, 0)
+        screen.blit(rampas.image, (rampas.rect.x, rampas.rect.y))
 
-    objects.Rock.startSign(placas, placas.image, 0, 0)
-    screen.blit(placas.image, (placas.rect.x, placas.rect.y))
+        listaObjetosAleatorios.add(rampas)
 
-    listaTotal.add(placas)
-    posicionaPlacas += 200
+    for i in range(totalPlacas):
+        placas = objects.Tree(color.colorKey, 42, 27, velocidade, larguraTela)
 
-for i in range(totalBuracoNeve):
-    buraco = objects.Tree(color.colorKey, 42,8, velocidade, larguraTela)
+        placas.rect.y = 400
+        placas.rect.x = posicionaPlacas
 
-    buraco.reset_pos()
+        placasGrandes = objects.Rock()
 
-    buracoNeve = objects.Rock()
+        objects.Rock.startSign(placas, placas.image, 0, 0)
+        screen.blit(placas.image, (placas.rect.x, placas.rect.y))
 
-    objects.Rock.snowSoft1(buraco, buraco.image, 0, 0)
-    screen.blit(buraco.image, (buraco.rect.x, buraco.rect.y))
+        listaTotal.add(placas)
+        posicionaPlacas += 200
 
-    listaBuracos.add(buraco)
-    listaTotal.add(buraco)
+    for i in range(totalBuracoNeve):
+        buraco = objects.Tree(color.colorKey, 42, 8, velocidade, larguraTela)
 
-for i in range(totalArvoresG):
-    arvoreFire = objects.Tree(color.colorKey, 44,54, velocidade, larguraTela)
+        buraco.reset_pos()
 
-    arvoreFire.reset_pos()
+        buracoNeve = objects.Rock()
 
-    arvoreS = objects.Rock()
+        objects.Rock.snowSoft1(buraco, buraco.image, 0, 0)
+        screen.blit(buraco.image, (buraco.rect.x, buraco.rect.y))
 
-    objects.Rock.treeFire1(arvoreFire, arvoreFire.image, 0, 0)
-    screen.blit(arvoreFire.image, (arvoreFire.rect.x, arvoreFire.rect.y))
+        listaBuracos.add(buraco)
+        listaTotal.add(buraco)
 
-    listaArvores.add(arvoreFire)
-    listaTotal.add(arvoreFire)
+    for i in range(totalArvoresG):
+        arvoreFire = objects.Tree(color.colorKey, 44, 54, velocidade, larguraTela)
 
-for i in range(totalArvoresG):
-    arvoreDry = objects.Tree(color.colorKey, 44,54, velocidade, larguraTela)
+        arvoreFire.reset_pos()
 
-    arvoreDry.reset_pos()
+        arvoreS = objects.Rock()
 
-    arvoreS = objects.Rock()
+        objects.Rock.treeFire1(arvoreFire, arvoreFire.image, 0, 0)
+        screen.blit(arvoreFire.image, (arvoreFire.rect.x, arvoreFire.rect.y))
 
-    objects.Rock.treeDry(arvoreDry, arvoreDry.image, 0, 0)
-    screen.blit(arvoreDry.image, (arvoreDry.rect.x, arvoreDry.rect.y))
+        listaArvores.add(arvoreFire)
+        listaTotal.add(arvoreFire)
 
-    listaArvores.add(arvoreDry)
-    listaTotal.add(arvoreDry)
+    for i in range(totalArvoresG):
+        arvoreDry = objects.Tree(color.colorKey, 44, 54, velocidade, larguraTela)
 
-for i in range(totalArvoresG):
-    arvoreSmall = objects.Tree(color.colorKey, 56,64, velocidade, larguraTela)
+        arvoreDry.reset_pos()
 
-    arvoreSmall.reset_pos()
+        arvoreS = objects.Rock()
 
-    arvoreS = objects.Rock()
+        objects.Rock.treeDry(arvoreDry, arvoreDry.image, 0, 0)
+        screen.blit(arvoreDry.image, (arvoreDry.rect.x, arvoreDry.rect.y))
 
-    objects.Rock.treeSmall(arvoreSmall, arvoreSmall.image, 0, 0)
-    screen.blit(arvoreSmall.image, (arvoreSmall.rect.x, arvoreSmall.rect.y))
+        listaArvores.add(arvoreDry)
+        listaTotal.add(arvoreDry)
 
-    listaArvores.add(arvoreSmall)
-    listaTotal.add(arvoreSmall)
+    for i in range(totalArvoresG):
+        arvoreSmall = objects.Tree(color.colorKey, 56, 64, velocidade, larguraTela)
 
+        arvoreSmall.reset_pos()
 
-while jogoAtivo:
+        arvoreS = objects.Rock()
 
-    for evento in pygame.event.get():
-        if evento.type == pygame.QUIT:
-            jogoAtivo = False
+        objects.Rock.treeSmall(arvoreSmall, arvoreSmall.image, 0, 0)
+        screen.blit(arvoreSmall.image, (arvoreSmall.rect.x, arvoreSmall.rect.y))
 
-        if evento.type == pygame.USEREVENT:
-            contar -= 1
-            texto = str(contar).rjust(3)
+        listaArvores.add(arvoreSmall)
+        listaTotal.add(arvoreSmall)
 
-            if pulei == True:
+    while jogoAtivo:
 
-                tempoPulo -= 1
-                if tempoPulo <= 0:
-                    tempoPulo = 1
-                    pulei = False
-
-            if puloBloqueado == True:
-
-                bloqueiaPulo -= 1
-                if bloqueiaPulo <= 0:
-                    bloqueiaPulo = 2
-                    puloBloqueado = False
-
-            if colidi == True:
-
-                tempoColisao -= 1
-                if tempoColisao <= 0:
-                    tempoColisao = 2
-                    colidi = False
-
-
-        if evento.type == pygame.MOUSEBUTTONDOWN:
-            if pulei == False and puloBloqueado == False:
-                pulei = True
-                puloBloqueado = True
-                print("Pimba com segurança")
-
-
-        #print(evento)
-
-        if evento.type == pygame.KEYDOWN:
-            print("Uma tecla foi pressionada")
-        if evento.type == pygame.KEYUP:
-            print("Uma tecla foi liberada")
-            if evento.key == pygame.K_ESCAPE:
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
                 jogoAtivo = False
-            if evento.key == pygame.K_SPACE:
-                if Dia:
-                    sky = color.black
-                    Dia = False
-                else:
-                    sky = color.blueSkyLight
-                    Dia = True
-    screen.fill(color.snow)
 
-    #Criacao de Personagem (fundo e personagem)
-    player = pygame.Surface((34, 62))
+            if evento.type == pygame.USEREVENT:
+                contar -= 1
+                texto = str(contar).rjust(3)
 
-    player.set_colorkey(color.colorKey)
+                if pulei == True:
 
+                    tempoPulo -= 1
+                    if tempoPulo <= 0:
+                        tempoPulo = 1
+                        pulei = False
 
-    hitBox_list.update(posX - 17, posY - 31)
+                if puloBloqueado == True:
 
-    hitBox_Player.animacoes(animacaoPlayer)
-    hitBoxInimigo_Player.animacoes(animacaoInimigo)
-    if comeu == False:
-        hitBox_list.draw(screen)
+                    bloqueiaPulo -= 1
+                    if bloqueiaPulo <= 0:
+                        bloqueiaPulo = 2
+                        puloBloqueado = False
 
-    blocks_hit_list = pygame.sprite.spritecollide(hitBox_Player, listaTotal, False)
-    for block in blocks_hit_list:
-        if pulei == False and colidi == False:
-            velocidade = 0
-            colidi = True
+                if colidi == True:
 
-    blockRampas = pygame.sprite.spritecollide(hitBox_Player, listaObjetosAleatorios, False)
-    for block in blockRampas:
-        if pulei == False and colidi == False:
-            pulei = True
+                    tempoColisao -= 1
+                    if tempoColisao <= 0:
+                        tempoColisao = 2
+                        colidi = False
 
-    # Declara e atualiza posicao do mouse
-    posMouse = pygame.mouse.get_pos()
-    xMouse = posMouse[0]
-    yMouse = posMouse[1]
+            if evento.type == pygame.MOUSEBUTTONDOWN:
+                if pulei == False and puloBloqueado == False:
+                    pulei = True
+                    puloBloqueado = True
+                    print("Pimba com segurança")
 
-    if yMouse > 300 and comeu == False:
+            # print(evento)
 
-        if velocidade < 25:
-            velocidade += 0.1
+            if evento.type == pygame.KEYDOWN:
+                print("Uma tecla foi pressionada")
+            if evento.type == pygame.KEYUP:
+                print("Uma tecla foi liberada")
+                if evento.key == pygame.K_ESCAPE:
+                    jogoAtivo = False
+                if evento.key == pygame.K_SPACE:
+                    if Dia:
+                        sky = color.black
+                        Dia = False
+                    else:
+                        sky = color.blueSkyLight
+                        Dia = True
+        screen.fill(color.snow)
+
+        # Criacao de Personagem (fundo e personagem)
+        player = pygame.Surface((34, 62))
+
+        player.set_colorkey(color.colorKey)
+
+        hitBox_list.update(posX - 17, posY - 31)
+
+        hitBox_Player.animacoes(animacaoPlayer)
+        hitBoxInimigo_Player.animacoes(animacaoInimigo)
+        if comeu == False:
+            hitBox_list.draw(screen)
+
+        blocks_hit_list = pygame.sprite.spritecollide(hitBox_Player, listaTotal, False)
+        for block in blocks_hit_list:
+            if pulei == False and colidi == False:
+                velocidade = 0
+                colidi = True
+
+        blockRampas = pygame.sprite.spritecollide(hitBox_Player, listaObjetosAleatorios, False)
+        for block in blockRampas:
+            if pulei == False and colidi == False:
+                pulei = True
+
+        # Declara e atualiza posicao do mouse
+        posMouse = pygame.mouse.get_pos()
+        xMouse = posMouse[0]
+        yMouse = posMouse[1]
+
+        if yMouse > 300 and comeu == False:
+
+            if velocidade < 25:
+                velocidade += 0.1
+            else:
+                velocidade = 25
         else:
-            velocidade = 25
-    else:
-        if velocidade > 0:
-            velocidade -= 0.5
+            if velocidade > 0:
+                velocidade -= 0.5
 
-    if colidi == False and comeu == False:
+        if colidi == False and comeu == False:
 
-        if pulei == False:
+            if pulei == False:
 
-            if xMouse > (posX + 50):
-                posX += 5
-                if velocidade > 0:
-                    animacaoPlayer = 1
+                if xMouse > (posX + 50):
+                    posX += 5
+                    if velocidade > 0:
+                        animacaoPlayer = 1
+                    else:
+                        animacaoPlayer = 3
+
+                elif xMouse < (posX - 50):
+                    posX -= 5
+                    if velocidade > 0:
+                        animacaoPlayer = 2
+                    else:
+                        animacaoPlayer = 4
                 else:
-                    animacaoPlayer = 3
+                    animacaoPlayer = 0
+            else:
+                animacaoPlayer = 5
+        else:
+            animacaoPlayer = 6
 
-            elif xMouse < (posX - 50):
-                posX -= 5
-                if velocidade > 0:
-                    animacaoPlayer = 2
+        for obj in listaTotal:
+            obj.velocidade = velocidade
+
+        for obj in listaObjetosAleatorios:
+            obj.velocidade = velocidade
+
+        listaTotal.update()
+        listaObjetosAleatorios.update()
+
+        listaTotal.draw(screen)
+        listaObjetosAleatorios.draw(screen)
+
+        # desenha tempo
+        screen.blit(font.render(texto, True, (0, 0, 0)), (32, 48))
+        # desenha inimigo
+
+        if contar < 55 and contar > 50:
+            # pygame.draw.rect(screen, (100, 200, 200), [posXMonster, posYmonster, 40, 20])
+            hitBoxInimigo_list.draw(screen)
+            hitBoxInimigo_list.update(posXMonster, posYmonster)
+
+            if velocidade < 10 and comeu == False:
+                if posXMonster > posX:
+                    posXMonster -= 25
+                    animacaoInimigo = 5
                 else:
-                    animacaoPlayer = 4
+                    posXMonster += 25
+                    animacaoInimigo = 0
+                if posYmonster > posY:
+                    posYmonster -= 25
+                else:
+                    posYmonster += 25
+            elif velocidade > 10 and velocidade < 20 and comeu == False:
+                if posXMonster > posX:
+                    posXMonster -= 10
+                    animacaoInimigo = 5
+                else:
+                    posXMonster += 10
+                    animacaoInimigo = 0
+                if posYmonster > posY:
+                    posYmonster -= 10
+                else:
+                    posYmonster += 10
+            elif velocidade > 24 and contar > 25 and comeu == False:
+                if posXMonster > posX:
+                    posXMonster -= 1
+                    animacaoInimigo = 5
+                else:
+                    posXMonster += 1
+                    animacaoInimigo = 0
+                if posYmonster > posY:
+                    posYmonster -= 1
+                else:
+                    posYmonster += 1
             else:
-                animacaoPlayer = 0
-        else:
-            animacaoPlayer = 5
-    else:
-        animacaoPlayer = 6
+                posYmonster -= 2
+                posXMonster -= 2
 
-    for obj in listaTotal:
-        obj.velocidade = velocidade
+            teste = pygame.sprite.spritecollide(hitBoxInimigo_Player, hitBox_list, False)
+            for inimigo in teste:
+                # screen.blit(font.render("PERDEU", True, (0, 0, 0)), (640, 360))
+                # Perdeu e temporario
+                tempoComeu -= 1
+                comeu = True
+                if tempoComeu < 10 and tempoComeu > 8:
+                    animacaoInimigo = 1
+                    pygame.mixer.music.load('assets/sounds/gobble.wav')
+                    pygame.mixer.music.play(0)
+                elif tempoComeu < 8 and tempoComeu > 6:
+                    animacaoInimigo = 2
+                elif tempoComeu < 4 and tempoComeu > 2:
+                    animacaoInimigo = 3
+                elif tempoComeu < 2 and tempoComeu > 0:
+                    animacaoInimigo = 4
+                    pygame.mixer.music.load('assets/sounds/argh.wav')
+                    pygame.mixer.music.play(0)
 
-    for obj in listaObjetosAleatorios:
-        obj.velocidade = velocidade
+                if acaba < acabou:
+                    acaba += 1
 
-    listaTotal.update()
-    listaObjetosAleatorios.update()
+                if acaba == 50:
+                    jogoAtivo = False
 
-    listaTotal.draw(screen)
-    listaObjetosAleatorios.draw(screen)
-
-    # desenha tempo
-    screen.blit(font.render(texto, True, (0, 0, 0)), (32, 48))
-    # desenha inimigo
-
-    if contar < 55 and contar > 50:
-        #pygame.draw.rect(screen, (100, 200, 200), [posXMonster, posYmonster, 40, 20])
-        hitBoxInimigo_list.draw(screen)
-        hitBoxInimigo_list.update(posXMonster, posYmonster)
-
-        if velocidade < 10 and comeu == False:
-            if posXMonster > posX:
-                posXMonster -= 25
-                animacaoInimigo = 5
-            else:
-                posXMonster += 25
-                animacaoInimigo = 0
-            if posYmonster > posY:
-                posYmonster -= 25
-            else:
-                posYmonster += 25
-        elif velocidade > 10 and velocidade < 20 and comeu == False:
-            if posXMonster > posX:
-                posXMonster -= 10
-                animacaoInimigo = 5
-            else:
-                posXMonster += 10
-                animacaoInimigo = 0
-            if posYmonster> posY:
-                posYmonster -= 10
-            else:
-                posYmonster += 10
-        elif velocidade > 24 and contar > 25 and comeu == False:
-            if posXMonster > posX:
-                posXMonster -= 1
-                animacaoInimigo = 5
-            else:
-                posXMonster += 1
-                animacaoInimigo = 0
-            if posYmonster > posY:
-                posYmonster -= 1
-            else:
-                posYmonster += 1
-        else:
-            posYmonster -= 2
-            posXMonster -= 2
-
-        teste = pygame.sprite.spritecollide(hitBoxInimigo_Player, hitBox_list, False)
-        for inimigo in teste:
-            #screen.blit(font.render("PERDEU", True, (0, 0, 0)), (640, 360))
-            #Perdeu e temporario
-            tempoComeu -= 1
-            comeu = True
-            if tempoComeu < 10 and tempoComeu > 8:
-                animacaoInimigo = 1
-                pygame.mixer.music.load('gobble.wav')
-                pygame.mixer.music.play(0)
-            elif tempoComeu < 8 and tempoComeu > 6:
-                animacaoInimigo = 2
-            elif tempoComeu < 4 and tempoComeu > 2:
-                animacaoInimigo = 3
-            elif tempoComeu < 2 and tempoComeu > 0:
-                animacaoInimigo = 4
-                pygame.mixer.music.load('argh.wav')
-                pygame.mixer.music.play(0)
+        if contar <= 50:
+            screen.blit(font.render("GANHOU", True, (0, 0, 0)), (640, 360))
 
             if acaba < acabou:
                 acaba += 1
@@ -559,20 +626,17 @@ while jogoAtivo:
             if acaba == 50:
                 jogoAtivo = False
 
-    if contar <= 50:
-        screen.blit(font.render("GANHOU", True, (0, 0, 0)), (640, 360))
+        pygame.display.flip()
 
-        if acaba < acabou:
-            acaba += 1
+        clock.tick(30)
 
-        if acaba == 50:
-            jogoAtivo = False
+        pygame.display.flip()
 
-    pygame.display.flip()
-
-    clock.tick(30)
-
-    pygame.display.flip()
+    if not jogoAtivo:
+        quitGame()
 
 
-pygame.quit()
+
+
+gameIntro()
+mainGame()
