@@ -550,7 +550,7 @@ def mainGame():
         screen.blit(font.render(texto, True, (0, 0, 0)), (32, 48))
         # desenha inimigo
 
-        if contar < 55 and contar > 50:
+        if contar < 20 and contar > 0:
             # pygame.draw.rect(screen, (100, 200, 200), [posXMonster, posYmonster, 40, 20])
             hitBoxInimigo_list.draw(screen)
             hitBoxInimigo_list.update(posXMonster, posYmonster)
@@ -617,7 +617,7 @@ def mainGame():
                 if acaba == 50:
                     jogoAtivo = False
 
-        if contar <= 50:
+        if contar <= 0:
             screen.blit(font.render("GANHOU", True, (0, 0, 0)), (640, 360))
 
             if acaba < acabou:
