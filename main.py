@@ -289,7 +289,7 @@ def mainGame():
     global colidi, tempoColisao, pulei, puloBloqueado, tempoPulo, bloqueiaPulo, acaba, acabou
 
     for i in range(totalPedras):
-        pedras = objects.Tree(color.colorKey, 44, 22, velocidade, larguraTela)
+        pedras = objects.Tree(color.colorKey, 44, 22, velocidade, larguraTela, listaTotal)
 
         pedras.reset_pos()
 
@@ -302,7 +302,7 @@ def mainGame():
         listaTotal.add(pedras)
 
     for i in range(totalArvoresG):
-        arvoreGigante = objects.Tree(color.colorKey, 64, 128, velocidade, larguraTela)
+        arvoreGigante = objects.Tree(color.colorKey, 64, 128, velocidade, larguraTela, listaTotal)
 
         arvoreGigante.reset_pos()
 
@@ -315,7 +315,7 @@ def mainGame():
         listaTotal.add(arvoreGigante)
 
     for i in range(totalPedras):
-        pedras2 = objects.Tree(color.colorKey, 32, 22, velocidade, larguraTela)
+        pedras2 = objects.Tree(color.colorKey, 32, 22, velocidade, larguraTela, listaTotal)
 
         pedras2.reset_pos()
 
@@ -328,7 +328,7 @@ def mainGame():
         listaTotal.add(pedras2)
 
     for i in range(totalBuracoNeve):
-        buraco = objects.Tree(color.colorKey, 64, 32, velocidade, larguraTela)
+        buraco = objects.Tree(color.colorKey, 64, 32, velocidade, larguraTela, listaTotal)
 
         buraco.reset_pos()
 
@@ -341,7 +341,7 @@ def mainGame():
         listaTotal.add(buraco)
 
     for i in range(totalRampas):
-        rampas = objects.Tree(color.colorKey, 64, 14, velocidade, larguraTela)
+        rampas = objects.Tree(color.colorKey, 64, 14, velocidade, larguraTela, listaTotal)
 
         rampas.reset_pos()
 
@@ -353,7 +353,7 @@ def mainGame():
         listaObjetosAleatorios.add(rampas)
 
     for i in range(totalPlacas):
-        placas = objects.Tree(color.colorKey, 42, 27, velocidade, larguraTela)
+        placas = objects.Tree(color.colorKey, 42, 27, velocidade, larguraTela, listaTotal)
 
         placas.rect.y = 400
         placas.rect.x = posicionaPlacas
@@ -367,7 +367,7 @@ def mainGame():
         posicionaPlacas += 200
 
     for i in range(totalBuracoNeve):
-        buraco = objects.Tree(color.colorKey, 42, 8, velocidade, larguraTela)
+        buraco = objects.Tree(color.colorKey, 42, 8, velocidade, larguraTela, listaTotal)
 
         buraco.reset_pos()
 
@@ -380,7 +380,7 @@ def mainGame():
         listaTotal.add(buraco)
 
     for i in range(totalArvoresG):
-        arvoreFire = objects.Tree(color.colorKey, 44, 54, velocidade, larguraTela)
+        arvoreFire = objects.Tree(color.colorKey, 44, 54, velocidade, larguraTela, listaTotal)
 
         arvoreFire.reset_pos()
 
@@ -393,7 +393,7 @@ def mainGame():
         listaTotal.add(arvoreFire)
 
     for i in range(totalArvoresG):
-        arvoreDry = objects.Tree(color.colorKey, 44, 54, velocidade, larguraTela)
+        arvoreDry = objects.Tree(color.colorKey, 44, 54, velocidade, larguraTela, listaTotal)
 
         arvoreDry.reset_pos()
 
@@ -406,7 +406,7 @@ def mainGame():
         listaTotal.add(arvoreDry)
 
     for i in range(totalArvoresG):
-        arvoreSmall = objects.Tree(color.colorKey, 56, 64, velocidade, larguraTela)
+        arvoreSmall = objects.Tree(color.colorKey, 56, 64, velocidade, larguraTela, listaTotal)
 
         arvoreSmall.reset_pos()
 
@@ -620,6 +620,13 @@ def mainGame():
         if contar <= 0:
             screen.blit(font.render("GANHOU", True, (0, 0, 0)), (640, 360))
 
+            if acaba < acabou:
+                acaba += 1
+
+            if acaba == 50:
+                jogoAtivo = False
+
+        if animacaoInimigo == 4:
             if acaba < acabou:
                 acaba += 1
 
