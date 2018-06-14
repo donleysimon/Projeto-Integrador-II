@@ -595,7 +595,7 @@ def mainGame():
             teste = pygame.sprite.spritecollide(hitBoxInimigo_Player, hitBox_list, False)
             for inimigo in teste:
                 # screen.blit(font.render("PERDEU", True, (0, 0, 0)), (640, 360))
-                # Perdeu e temporario
+                # Perdeu e temporari
                 tempoComeu -= 1
                 comeu = True
                 if tempoComeu < 10 and tempoComeu > 8:
